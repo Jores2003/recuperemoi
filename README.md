@@ -121,6 +121,7 @@
   <a href="index.html">Accueil</a>
   <a href="https://tally.so/r/ODJrVY" target="_blank">Déposer un objet</a>
   <a href="apropos.html">À propos</a>
+  <a href="faq.html">FAQ</a>
   <a href="contact.html">Contact</a>
 </nav>
 
