@@ -5,7 +5,6 @@
   <title>RecupèreMoi - Donnez une seconde vie à vos objets</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- STYLE AMÉLIORÉ -->
   <style>
     body {
       font-family: "Segoe UI", Arial, sans-serif;
@@ -14,6 +13,27 @@
       background:#f3f7f4;
       color:#1f2d1f;
       line-height: 1.6;
+    }
+
+    /* MENU */
+    nav {
+      background:#276749;
+      padding:12px 0;
+      text-align:center;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    nav a {
+      color:white;
+      text-decoration:none;
+      margin:0 18px;
+      font-weight:600;
+      font-size:1.05em;
+      transition:0.2s;
+    }
+
+    nav a:hover {
+      color:#c6f6d5;
     }
 
     header {
@@ -95,6 +115,14 @@
 </head>
 
 <body>
+
+<!-- MENU -->
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="https://tally.so/r/ODJrVY" target="_blank">Déposer un objet</a>
+  <a href="apropos.html">À propos</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
 <header>
   <img src="Logo-RecupereMoi.png" alt="Logo RecupèreMoi">
