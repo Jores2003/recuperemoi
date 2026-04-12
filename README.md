@@ -22,7 +22,7 @@
 <header>
   <h1>RecupèreMoi</h1>
   <p>La plateforme qui connecte vos objets inutilisés aux Ressourceries et associations près de chez vous.</p>
-  <a href="#don" class="btn">Déposer un objet</a>
+  <a href="https://tally.so/r/ODJrVY" class="btn" target="_blank">Déposer un objet</a>
 </header>
 
 <div class="container">
@@ -61,7 +61,8 @@
 
   <section id="don">
     <h2>Déposer un objet</h2>
-    <p>Le formulaire de don sera bientôt disponible. Vous pourrez y décrire votre objet, ajouter une photo et indiquer votre ville pour être orienté vers la structure la plus proche.</p>
+    <p>Pour déposer un objet, cliquez ici :</p>
+    <a href="https://tally.so/r/ODJrVY" class="btn" target="_blank">Accéder au formulaire</a>
   </section>
 
   <section>
