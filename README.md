@@ -134,7 +134,7 @@
 <div class="container">
 
   <section>
-    <h2>Le problème</h2>
+    <h2>❗ Le problème</h2>
     <p>Aujourd’hui, donner un objet, c’est souvent compliqué :</p>
     <ul>
       <li>On ne sait pas où aller</li>
@@ -145,7 +145,7 @@
   </section>
 
   <section>
-    <h2>La solution RecupèreMoi</h2>
+    <h2>💡 La solution RecupèreMoi</h2>
     <p>Donner devient simple, en 3 étapes :</p>
     <ul>
       <li>Vous décrivez votre objet</li>
@@ -156,7 +156,7 @@
   </section>
 
   <section>
-    <h2>Pourquoi RecupèreMoi est différent</h2>
+    <h2>🌱 Pourquoi RecupèreMoi est différent</h2>
     <ul>
       <li>Priorité aux Ressourceries et structures solidaires</li>
       <li>Bilan d’impact pour chaque don (CO₂ évité, ressources préservées)</li>
@@ -166,20 +166,33 @@
   </section>
 
   <section id="don">
-    <h2>Déposer un objet</h2>
+    <h2>📦 Déposer un objet</h2>
     <p>Pour déposer un objet, cliquez ici :</p>
     <a href="https://tally.so/r/ODJrVY" class="btn" target="_blank">Accéder au formulaire</a>
   </section>
 
   <section>
-    <h2>À propos</h2>
+    <h2>ℹ️ À propos</h2>
     <p>RecupèreMoi est une initiative solidaire qui facilite le don d’objets et soutient les Ressourceries partout en France. Notre mission : réduire les déchets, encourager le réemploi et rendre le don accessible à tous.</p>
   </section>
 
 </div>
 
 <footer>
-  © RecupèreMoi – Projet de plateforme solidaire de réemploi
+  <div style="max-width:900px; margin:auto; padding:20px;">
+    <p><strong>RecupèreMoi</strong> – Donnez une seconde vie à vos objets.</p>
+
+    <p>
+      <a href="index.html">Accueil</a> •
+      <a href="apropos.html">À propos</a> •
+      <a href="faq.html">FAQ</a> •
+      <a href="contact.html">Contact</a>
+    </p>
+
+    <p style="margin-top:15px; font-size:0.9em; color:#555;">
+      Projet solidaire de réemploi – © 2026 RecupèreMoi
+    </p>
+  </div>
 </footer>
 
 </body>
