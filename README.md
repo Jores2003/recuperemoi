@@ -20,6 +20,7 @@
 <body>
 
 <header>
+  <img src="Logo-RecupereMoi.png" alt="Logo RecupèreMoi" style="width:180px; margin-bottom:10px;">
   <h1>RecupèreMoi</h1>
   <p>La plateforme qui connecte vos objets inutilisés aux Ressourceries et associations près de chez vous.</p>
   <a href="https://tally.so/r/ODJrVY" class="btn" target="_blank">Déposer un objet</a>
