@@ -19,11 +19,20 @@
 </head>
 <body>
 
-<header>
-  <img src="Logo-RecupereMoi.png" alt="Logo RecupèreMoi" style="width:180px; margin-bottom:10px;">
-  <h1>RecupèreMoi</h1>
-  <p>La plateforme qui connecte vos objets inutilisés aux Ressourceries et associations près de chez vous.</p>
-  <a href="https://tally.so/r/ODJrVY" class="btn" target="_blank">Déposer un objet</a>
+<header style="text-align:center; padding:40px 20px; background:#2f855a; color:white;">
+  <img src="Logo-RecupereMoi.png" 
+       alt="Logo RecupèreMoi" 
+       style="width:260px; margin-bottom:20px;">
+  <h1 style="margin:0 0 10px;">RecupèreMoi</h1>
+  <p style="margin:0 0 20px;">
+    La plateforme qui connecte vos objets inutilisés aux Ressourceries et associations près de chez vous.
+  </p>
+  <a href="https://tally.so/r/ODJrVY" 
+     class="btn" 
+     target="_blank"
+     style="display:inline-block; padding:10px 20px; background:white; color:#2f855a; text-decoration:none; border-radius:4px; font-weight:bold;">
+     Déposer un objet
+  </a>
 </header>
 
 <div class="container">
