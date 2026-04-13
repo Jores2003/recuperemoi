@@ -6,12 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    /* PALETTE OFFICIELLE RECUPÈREMOI
+       Vert principal : #2F855A
+       Vert foncé     : #276749
+       Vert clair     : #C6F6D5
+       Neutre fond    : #F3F7F4
+       Noir doux      : #1F2D1F
+    */
+
     body {
       font-family: "Segoe UI", Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background:#f3f7f4;
-      color:#1f2d1f;
+      background:#F3F7F4;
+      color:#1F2D1F;
       line-height: 1.6;
     }
 
@@ -33,11 +41,12 @@
     }
 
     nav a:hover {
-      color:#c6f6d5;
+      color:#C6F6D5;
     }
 
+    /* HEADER */
     header {
-      background:#2f855a;
+      background:#2F855A;
       color:white;
       padding:50px 20px;
       text-align:center;
@@ -69,11 +78,12 @@
       margin-bottom: 25px;
     }
 
+    /* BOUTONS */
     .btn {
       display:inline-block;
       padding:12px 25px;
       background:white;
-      color:#2f855a;
+      color:#2F855A;
       text-decoration:none;
       border-radius:6px;
       font-weight:bold;
@@ -83,11 +93,12 @@
     }
 
     .btn:hover {
-      background:#e6f5ec;
-      border-color:#e6f5ec;
+      background:#C6F6D5;
+      border-color:#C6F6D5;
       transform: scale(1.05);
     }
 
+    /* CONTENU */
     .container {
       max-width:900px;
       margin:40px auto;
@@ -100,7 +111,7 @@
       margin-bottom:25px;
       border-radius:10px;
       box-shadow:0 4px 10px rgba(0,0,0,0.06);
-      border-left:6px solid #2f855a;
+      border-left:6px solid #2F855A;
       transition:0.3s;
     }
 
@@ -115,14 +126,15 @@
       font-size:1.6em;
     }
 
+    /* FOOTER */
     footer {
       text-align:center;
       padding:25px;
       font-size:0.9em;
-      color:#4a4a4a;
+      color:#1F2D1F;
       margin-top:40px;
-      background:#e8eee9;
-      border-top:4px solid #cbd5d0;
+      background:#E8EEE9;
+      border-top:4px solid #C6D5D0;
     }
 
     /* ANIMATIONS FADE-IN */
@@ -216,28 +228,5 @@
       <a href="contact.html">Contact</a>
     </p>
 
-    <p style="margin-top:15px; font-size:0.9em; color:#555;">
-      Projet solidaire de réemploi – © 2026 RecupèreMoi
-    </p>
-  </div>
-</footer>
-
-<!-- SCRIPT ANIMATIONS -->
-<script>
-  const sections = document.querySelectorAll(".fade-in");
-
-  function reveal() {
-    sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        sec.classList.add("visible");
-      }
-    });
-  }
-
-  window.addEventListener("scroll", reveal);
-  window.addEventListener("load", reveal);
-</script>
-
-</body>
-</html>
+    <p style="margin-top:15px; font-size:0.9em;">
+      Projet solidaire de réemploi
