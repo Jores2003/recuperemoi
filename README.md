@@ -157,6 +157,7 @@
 <!-- MENU -->
 <nav>
   <a href="index.html">Accueil</a>
+  <a href="ressourceries.html">Ressourceries</a>
   <a href="https://tally.so/r/ODJrVY" target="_blank">Déposer un objet</a>
   <a href="apropos.html">À propos</a>
   <a href="faq.html">FAQ</a>
