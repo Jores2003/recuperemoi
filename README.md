@@ -126,14 +126,6 @@
       font-size:1.6em;
     }
 
-    /* ILLUSTRATIONS */
-    .illu {
-      width:70px;
-      display:block;
-      margin:0 auto 15px auto;
-      opacity:0.95;
-    }
-
     /* FOOTER */
     footer {
       text-align:center;
@@ -181,7 +173,6 @@
 <div class="container">
 
   <section class="fade-in">
-    <img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" class="illu">
     <h2>❗ Le problème</h2>
     <p>Aujourd’hui, donner un objet, c’est souvent compliqué :</p>
     <ul>
@@ -193,7 +184,6 @@
   </section>
 
   <section class="fade-in">
-    <img src="https://cdn-icons-png.flaticon.com/512/702/702814.png" class="illu">
     <h2>💡 La solution RecupèreMoi</h2>
     <p>Donner devient simple, en 3 étapes :</p>
     <ul>
@@ -205,7 +195,6 @@
   </section>
 
   <section class="fade-in">
-    <img src="https://cdn-icons-png.flaticon.com/512/2907/2907253.png" class="illu">
     <h2>🌱 Pourquoi RecupèreMoi est différent</h2>
     <ul>
       <li>Priorité aux Ressourceries et structures solidaires</li>
@@ -216,13 +205,50 @@
   </section>
 
   <section class="fade-in" id="don">
-    <img src="https://cdn-icons-png.flaticon.com/512/679/679720.png" class="illu">
     <h2>📦 Déposer un objet</h2>
     <p>Pour déposer un objet, cliquez ici :</p>
     <a href="https://tally.so/r/ODJrVY" class="btn" target="_blank">Accéder au formulaire</a>
   </section>
 
   <section class="fade-in">
-    <img src="https://cdn-icons-png.flaticon.com/512/471/471664.png" class="illu">
     <h2>ℹ️ À propos</h2>
-    <p>RecupèreMoi est une initiative solidaire qui facilite le don d’objets et soutient les Ressourceries partout
+    <p>RecupèreMoi est une initiative solidaire qui facilite le don d’objets et soutient les Ressourceries partout en France. Notre mission : réduire les déchets, encourager le réemploi et rendre le don accessible à tous.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div style="max-width:900px; margin:auto; padding:20px;">
+    <p><strong>RecupèreMoi</strong> – Donnez une seconde vie à vos objets.</p>
+
+    <p>
+      <a href="index.html">Accueil</a> •
+      <a href="apropos.html">À propos</a> •
+      <a href="faq.html">FAQ</a> •
+      <a href="contact.html">Contact</a>
+    </p>
+
+    <p style="margin-top:15px; font-size:0.9em;">
+      Projet solidaire de réemploi – © 2026 RecupèreMoi
+    </p>
+  </div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll(".fade-in");
+
+  function reveal() {
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        sec.classList.add("visible");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", reveal);
+  window.addEventListener("load", reveal);
+</script>
+
+</body>
+</html>
