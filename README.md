@@ -48,6 +48,13 @@
       width:280px;
       margin-bottom:20px;
       filter: drop-shadow(0px 3px 4px rgba(0,0,0,0.25));
+      animation: fadeLogo 1.2s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeLogo {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     h1 {
@@ -94,6 +101,12 @@
       border-radius:10px;
       box-shadow:0 4px 10px rgba(0,0,0,0.06);
       border-left:6px solid #2f855a;
+      transition:0.3s;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+      box-shadow:0 6px 14px rgba(0,0,0,0.12);
     }
 
     h2 {
@@ -111,6 +124,19 @@
       background:#e8eee9;
       border-top:4px solid #cbd5d0;
     }
+
+    /* ANIMATIONS FADE-IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 
@@ -134,7 +160,7 @@
 
 <div class="container">
 
-  <section>
+  <section class="fade-in">
     <h2>❗ Le problème</h2>
     <p>Aujourd’hui, donner un objet, c’est souvent compliqué :</p>
     <ul>
@@ -145,7 +171,7 @@
     </ul>
   </section>
 
-  <section>
+  <section class="fade-in">
     <h2>💡 La solution RecupèreMoi</h2>
     <p>Donner devient simple, en 3 étapes :</p>
     <ul>
@@ -156,7 +182,7 @@
     <p>C’est simple, rapide et gratuit.</p>
   </section>
 
-  <section>
+  <section class="fade-in">
     <h2>🌱 Pourquoi RecupèreMoi est différent</h2>
     <ul>
       <li>Priorité aux Ressourceries et structures solidaires</li>
@@ -166,13 +192,13 @@
     </ul>
   </section>
 
-  <section id="don">
+  <section class="fade-in" id="don">
     <h2>📦 Déposer un objet</h2>
     <p>Pour déposer un objet, cliquez ici :</p>
     <a href="https://tally.so/r/ODJrVY" class="btn" target="_blank">Accéder au formulaire</a>
   </section>
 
-  <section>
+  <section class="fade-in">
     <h2>ℹ️ À propos</h2>
     <p>RecupèreMoi est une initiative solidaire qui facilite le don d’objets et soutient les Ressourceries partout en France. Notre mission : réduire les déchets, encourager le réemploi et rendre le don accessible à tous.</p>
   </section>
@@ -195,6 +221,23 @@
     </p>
   </div>
 </footer>
+
+<!-- SCRIPT ANIMATIONS -->
+<script>
+  const sections = document.querySelectorAll(".fade-in");
+
+  function reveal() {
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        sec.classList.add("visible");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", reveal);
+  window.addEventListener("load", reveal);
+</script>
 
 </body>
 </html>
