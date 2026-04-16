@@ -205,6 +205,62 @@
     </ul>
   </section>
 
+  <!-- 🔥 NOUVELLES SECTIONS INTÉGRÉES ICI -->
+
+  <section class="fade-in">
+    <h2>🌍 Le constat : pourquoi le réemploi solidaire est essentiel</h2>
+    <p>Chaque année, des millions d’objets encore utilisables sont jetés en France : meubles, électroménager, textile, jouets, matériel informatique, vaisselle… Une grande partie pourrait être réemployée, réparée ou donnée, mais finit encore trop souvent à la déchèterie ou en dépôts sauvages.</p>
+
+    <ul>
+      <li><strong>1,2 million de tonnes</strong> de meubles jetés chaque année</li>
+      <li><strong>700 000 tonnes</strong> de textiles jetés chaque année</li>
+      <li><strong>20 kg</strong> de déchets électroniques par habitant</li>
+      <li><strong>420 millions d’euros</strong> de coûts liés aux dépôts sauvages</li>
+    </ul>
+
+    <p>Ces dépôts illégaux ont des impacts directs sur l’environnement : pollution des sols et des eaux, émissions de CO₂, destruction des habitats naturels et gaspillage de ressources encore utiles.</p>
+  </section>
+
+  <section class="fade-in">
+    <h2>⚖️ Un cadre légal qui renforce le réemploi</h2>
+    <p>Pour lutter contre les déchets et encourager le réemploi, plusieurs lois ont été mises en place :</p>
+
+    <ul>
+      <li><strong>Loi AGEC (2020)</strong> : développement du réemploi, interdiction de détruire les invendus non alimentaires</li>
+      <li><strong>Code de l’environnement</strong> : sanctions contre les dépôts sauvages</li>
+      <li><strong>Feuille de route Économie Circulaire</strong> : priorité au réemploi, à la réparation et à la réduction des déchets</li>
+      <li><strong>Responsabilité Élargie du Producteur (REP)</strong> : obligation pour les fabricants de financer la collecte, le tri et le réemploi</li>
+    </ul>
+
+    <p>Malgré ces avancées, les Ressourceries manquent encore de visibilité et les particuliers ne savent pas toujours où donner leurs objets.</p>
+  </section>
+
+  <section class="fade-in">
+    <h2>🌱 Pourquoi le réemploi solidaire change tout</h2>
+    <p>Réemployer un objet, c’est éviter la production d’un objet neuf, économiser des ressources naturelles (bois, métaux, eau, énergie), réduire les émissions de CO₂ et soutenir les emplois locaux et l’insertion professionnelle.</p>
+    <p>Le réemploi solidaire est l’une des solutions les plus efficaces pour réduire l’impact environnemental des déchets non alimentaires.</p>
+  </section>
+
+  <section class="fade-in">
+    <h2>🔗 Pour aller plus loin : ressources officielles</h2>
+    <p>Découvrez les sources officielles qui documentent le réemploi, l’économie circulaire et la lutte contre les dépôts sauvages.</p>
+
+    <ul>
+      <li><a href="https://www.ademe.fr/expertises/economie-circulaire" target="_blank">ADEME – Économie circulaire</a></li>
+      <li><a href="https://librairie.ademe.fr/dechets-economie-circulaire/" target="_blank">ADEME – Réemploi et réutilisation</a></li>
+      <li><a href="https://www.ecologie.gouv.fr/lutte-contre-depots-sauvages" target="_blank">Ministère – Dépôts sauvages</a></li>
+      <li><a href="https://www.ecologie.gouv.fr/economie-circulaire" target="_blank">Ministère – Économie circulaire</a></li>
+      <li><a href="https://www.oecd.org/environment/circular-economy/" target="_blank">OCDE – Économie circulaire</a></li>
+      <li><a href="https://www.oecd.org/environment/waste/" target="_blank">OCDE – Gestion des déchets</a></li>
+      <li><a href="https://www.unep.org/fr/themes/pollution" target="_blank">ONU Environnement – Pollution et déchets</a></li>
+      <li><a href="https://environment.ec.europa.eu/strategy/circular-economy-action-plan_fr" target="_blank">Commission Européenne – Plan d’action économie circulaire</a></li>
+    </ul>
+
+    <p>Ces ressources permettent de mieux comprendre les enjeux du réemploi solidaire et la réglementation en vigueur.</p>
+  </section>
+
+  <!-- FIN DES NOUVELLES SECTIONS -->
+
   <section class="fade-in" id="don">
     <h2>📦 Déposer un objet</h2>
     <p>Pour déposer un objet, cliquez ici :</p>
