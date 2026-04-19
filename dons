@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Voir les dons - RecupèreMoi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background:#F3F7F4;
+      color:#1F2D1F;
+    }
+
+    nav {
+      background:#276749;
+      padding:12px 0;
+      text-align:center;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    nav a {
+      color:white;
+      text-decoration:none;
+      margin:0 18px;
+      font-weight:600;
+      font-size:1.05em;
+      transition:0.2s;
+    }
+
+    nav a:hover {
+      color:#C6F6D5;
+    }
+
+    header {
+      background:#2F855A;
+      color:white;
+      padding:40px 20px;
+      text-align:center;
+      border-bottom: 6px solid #276749;
+    }
+
+    h1 {
+      margin:0;
+      font-size:2.2em;
+      font-weight:700;
+    }
+
+    .container {
+      max-width:1100px;
+      margin:40px auto;
+      padding:0 20px;
+    }
+
+    /* Filtres */
+    .filters {
+      background:white;
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      margin-bottom:25px;
+      border-left:6px solid #2F855A;
+    }
+
+    .filters select {
+      padding:10px;
+      border-radius:6px;
+      border:1px solid #ccc;
+      margin-right:10px;
+      font-size:1em;
+    }
+
+    /* Grille des dons */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:20px;
+    }
+
+    .card {
+      background:white;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      overflow:hidden;
+      border-left:6px solid #2F855A;
+      transition:0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow:0 6px 14px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+
+    .card-content {
+      padding:15px;
+    }
+
+    .card h3 {
+      margin:0 0 10px;
+      color:#276749;
+    }
+
+    .btn-contact {
+      display:inline-block;
+      margin-top:10px;
+      padding:10px 18px;
+      background:#2F855A;
+      color:white;
+      text-decoration:none;
+      border-radius:6px;
+      font-weight:bold;
+      transition:0.2s;
+    }
+
+    .btn-contact:hover {
+      background:#276749;
+    }
+
+    footer {
+      text-align:center;
+      padding:25px;
+      margin-top:40px;
+      background:#E8EEE9;
+      border-top:4px solid #C6D5D0;
+      font-size:0.9em;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="deposer.html">Déposer un objet</a>
+  <a href="dons.html">Voir les dons</a>
+  <a href="apropos.html">À propos</a>
+</nav>
+
+<header>
+  <h1>Voir les dons disponibles</h1>
+  <p>Découvrez les objets donnés par les utilisateurs et contactez-les directement.</p>
+</header>
+
+<div class="container">
+
+  <!-- FILTRES -->
+  <div class="filters">
+    <label>Catégorie :</label>
+    <select>
+      <option value="">Toutes</option>
+      <option>Meubles</option>
+      <option>Électroménager</option>
+      <option>Vêtements</option>
+      <option>Livres</option>
+      <option>Jouets</option>
+      <option>Décoration</option>
+      <option>Informatique</option>
+    </select>
+
+    <label>Ville :</label>
+    <select>
+      <option value="">Toutes</option>
+      <option>Paris</option>
+      <option>Lyon</option>
+      <option>Marseille</option>
+      <option>Nice</option>
+      <option>Lille</option>
+    </select>
+  </div>
+
+  <!-- GRILLE DES DONS (exemples statiques pour l’instant) -->
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Objet">
+      <div class="card-content">
+        <h3>Chaise en bois</h3>
+        <p>Catégorie : Meubles</p>
+        <p>Ville : Nice</p>
+        <a href="mailto:exemple@mail.com" class="btn-contact">Contacter le donneur</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Objet">
+      <div class="card-content">
+        <h3>Micro-ondes</h3>
+        <p>Catégorie : Électroménager</p>
+        <p>Ville : Marseille</p>
+        <a href="mailto:exemple@mail.com" class="btn-contact">Contacter le donneur</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Objet">
+      <div class="card-content">
+        <h3>Lot de vêtements</h3>
+        <p>Catégorie : Vêtements</p>
+        <p>Ville : Paris</p>
+        <a href="mailto:exemple@mail.com" class="btn-contact">Contacter le donneur</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 RecupèreMoi – Plateforme de dons gratuits</p>
+</footer>
+
+</body>
+</html>
