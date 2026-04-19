@@ -135,16 +135,25 @@
       const grid = document.getElementById("donGrid");
 
       data.forEach(don => {
+
+        const type = don["Type d’objet"] || "Objet";
+        const etat = don["État de l’objet"] || "État inconnu";
+        const ville = don["Ville / Code postal"] || "Ville inconnue";
+        const photo = don["Photo de l’objet (upload)"] || "https://via.placeholder.com/300x180";
+        const nom = don["Nom du donneur"] || "Donneur";
+        const contact = don["Email ou téléphone"] || "";
+
         const card = document.createElement("div");
         card.className = "card";
 
         card.innerHTML = `
-          <img src="${don['Photo']}" alt="Objet">
+          <img src="${photo}" alt="Objet">
           <div class="card-content">
-            <h3>${don['Nom de l’objet']}</h3>
-            <p>Catégorie : ${don['Catégorie']}</p>
-            <p>Ville : ${don['Ville']}</p>
-            <a href="mailto:${don['Email']}" class="btn-contact">Contacter le donneur</a>
+            <h3>${type}</h3>
+            <p>État : ${etat}</p>
+            <p>Ville : ${ville}</p>
+            <p>Donneur : ${nom}</p>
+            <a href="mailto:${contact}" class="btn-contact">Contacter</a>
           </div>
         `;
 
