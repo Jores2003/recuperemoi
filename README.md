@@ -120,6 +120,7 @@
   <a href="deposer.html">Déposer un objet</a>
   <a href="dons.html">Voir les dons</a>
   <a href="apropos.html">À propos</a>
+  <a href="contact.html">Contact</a>
 </nav>
 
 <header>
