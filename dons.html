@@ -1,166 +1,32 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Voir les dons - RecupèreMoi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <style>
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background:#F3F7F4;
-      color:#1F2D1F;
-    }
-
-    nav {
-      background:#276749;
-      padding:12px 0;
-      text-align:center;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    nav a {
-      color:white;
-      text-decoration:none;
-      margin:0 18px;
-      font-weight:600;
-      font-size:1.05em;
-      transition:0.2s;
-    }
-
-    nav a:hover {
-      color:#C6F6D5;
-    }
-
-    header {
-      background:#2F855A;
-      color:white;
-      padding:40px 20px;
-      text-align:center;
-      border-bottom: 6px solid #276749;
-    }
-
-    h1 {
-      margin:0;
-      font-size:2.2em;
-      font-weight:700;
-    }
-
-    .container {
-      max-width:1100px;
-      margin:40px auto;
-      padding:0 20px;
-    }
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      gap:20px;
-    }
-
-    .card {
-      background:white;
-      border-radius:10px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.08);
-      overflow:hidden;
-      border-left:6px solid #2F855A;
-      transition:0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow:0 6px 14px rgba(0,0,0,0.12);
-    }
-
-    .card img {
-      width:100%;
-      height:180px;
-      object-fit:cover;
-    }
-
-    .card-content {
-      padding:15px;
-    }
-
-    .card h3 {
-      margin:0 0 10px;
-      color:#276749;
-    }
-
-    .btn-contact {
-      display:inline-block;
-      margin-top:10px;
-      padding:10px 18px;
-      background:#2F855A;
-      color:white;
-      text-decoration:none;
-      border-radius:6px;
-      font-weight:bold;
-      transition:0.2s;
-    }
-
-    .btn-contact:hover {
-      background:#276749;
-    }
-  </style>
-</head>
-
-<body>
-
-<nav>
-  <a href="index.html">Accueil</a>
-  <a href="deposer.html">Déposer un objet</a>
-  <a href="dons.html">Voir les dons</a>
-  <a href="apropos.html">À propos</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
-<header>
-  <h1>Voir les dons disponibles</h1>
-  <p>Les dons apparaissent automatiquement dès qu’un utilisateur remplit le formulaire.</p>
-</header>
-
-<div class="container">
-  <div id="donGrid" class="grid"></div>
-</div>
-
 <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbwZmP_KL9ZA9BZFJjhUEHYqqeAkmglU5AUbmLBU2_kbW_uTW0Vt2NNpAllx2XS8O8sQFw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
 
-  fetch(API_URL)
-    .then(res => res.json())
-    .then(data => {
-      const grid = document.getElementById("donGrid");
+fetch(API_URL)
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("donations");
+    container.innerHTML = "";
 
-      data.forEach(don => {
+    data.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "don-card";
 
-        const type = don["Type d’objet"] || "Objet";
-        const etat = don["État de l’objet"] || "État inconnu";
-        const ville = don["Ville / Code postal"] || "Ville inconnue";
-        const photo = don["Photo de l’objet (upload)"] || "https://via.placeholder.com/300x180";
-        const nom = don["Nom du donneur"] || "Donneur";
-        const contact = don["Email ou téléphone"] || "";
+      const photo = item["Photo de l’objet (upload)"] || "";
+      const type = item["Type d’objet"] || "Objet";
+      const etat = item["État de l’objet"] || "Non précisé";
+      const ville = item["Ville / Code postal"] || "Ville inconnue";
 
-        const card = document.createElement("div");
-        card.className = "card";
+      card.innerHTML = `
+        <img src="${photo}" alt="Photo du don" class="don-photo">
+        <h3>${type}</h3>
+        <p><strong>État :</strong> ${etat}</p>
+        <p><strong>Ville :</strong> ${ville}</p>
+      `;
 
-        card.innerHTML = `
-          <img src="${photo}" alt="Objet">
-          <div class="card-content">
-            <h3>${type}</h3>
-            <p>État : ${etat}</p>
-            <p>Ville : ${ville}</p>
-            <p>Donneur : ${nom}</p>
-            <a href="mailto:${contact}" class="btn-contact">Contacter</a>
-          </div>
-        `;
-
-        grid.appendChild(card);
-      });
+      container.appendChild(card);
     });
+  })
+  .catch(error => {
+    console.error("Erreur API :", error);
+  });
 </script>
-
-</body>
-</html>
