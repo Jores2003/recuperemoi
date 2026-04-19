@@ -15,9 +15,31 @@
 
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
+    /* Filtres */
+    #filters {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    #filters button {
+      padding: 8px 15px;
+      border: none;
+      background: #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #filters button.active {
+      background: #333;
+      color: white;
+    }
+
+    /* Grille des dons */
     #donations {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -49,6 +71,18 @@
       margin: 5px 0;
       font-size: 14px;
     }
+
+    /* Bouton Voir plus */
+    #loadMore {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -56,40 +90,89 @@
 
   <h1>Les dons disponibles</h1>
 
-  <!-- Conteneur où les dons seront affichés -->
+  <!-- Filtres -->
+  <div id="filters">
+    <button data-filter="all" class="active">Tous</button>
+    <button data-filter="meuble">Meubles</button>
+    <button data-filter="jouet">Jouets</button>
+    <button data-filter="textile">Textile</button>
+    <button data-filter="électroménager">Électroménager</button>
+    <button data-filter="déco">Décoration</button>
+    <button data-filter="autre">Autre</button>
+  </div>
+
+  <!-- Conteneur des dons -->
   <div id="donations"></div>
+
+  <!-- Bouton Voir plus -->
+  <button id="loadMore">Voir plus</button>
 
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
 
+    let allDonations = [];
+    let visibleCount = 6; // nombre de dons affichés au début
+    let currentFilter = "all";
+
+    // Charger les données
     fetch(API_URL)
       .then(response => response.json())
       .then(data => {
-        const container = document.getElementById("donations");
-        container.innerHTML = "";
-
-        data.forEach(item => {
-          const card = document.createElement("div");
-          card.className = "don-card";
-
-          const photo = item["Photo de l’objet (upload)"] || "";
-          const type = item["Type d’objet"] || "Objet";
-          const etat = item["État de l’objet"] || "Non précisé";
-          const ville = item["Ville / Code postal"] || "Ville inconnue";
-
-          card.innerHTML = `
-            <img src="${photo}" alt="Photo du don" class="don-photo">
-            <h3>${type}</h3>
-            <p><strong>État :</strong> ${etat}</p>
-            <p><strong>Ville :</strong> ${ville}</p>
-          `;
-
-          container.appendChild(card);
-        });
-      })
-      .catch(error => {
-        console.error("Erreur API :", error);
+        // Trier par date (plus récent en premier)
+        allDonations = data.sort((a, b) => new Date(b["Submitted at"]) - new Date(a["Submitted at"]));
+        renderDonations();
       });
+
+    // Afficher les dons
+    function renderDonations() {
+      const container = document.getElementById("donations");
+      container.innerHTML = "";
+
+      const filtered = allDonations.filter(item => {
+        if (currentFilter === "all") return true;
+        return item["Type d’objet"].toLowerCase().includes(currentFilter);
+      });
+
+      filtered.slice(0, visibleCount).forEach(item => {
+        const card = document.createElement("div");
+        card.className = "don-card";
+
+        const photos = item["Photo de l’objet (upload)"]?.split(",") || [];
+        const photo = photos[0] || "";
+
+        const type = item["Type d’objet"] || "Objet";
+        const etat = item["État de l’objet"] || "Non précisé";
+        const ville = item["Ville / Code postal"] || "Ville inconnue";
+        const contact = item["Email ou téléphone"] || "";
+
+        card.innerHTML = `
+          <img src="${photo}" alt="Photo du don" class="don-photo">
+          <h3>${type}</h3>
+          <p><strong>État :</strong> ${etat}</p>
+          <p><strong>Ville :</strong> ${ville}</p>
+          <button onclick="alert('Contact du donneur : ${contact}')">Contacter le donneur</button>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // Filtres
+    document.querySelectorAll("#filters button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelector("#filters .active").classList.remove("active");
+        btn.classList.add("active");
+        currentFilter = btn.dataset.filter;
+        visibleCount = 6;
+        renderDonations();
+      });
+    });
+
+    // Voir plus
+    document.getElementById("loadMore").addEventListener("click", () => {
+      visibleCount += 6;
+      renderDonations();
+    });
   </script>
 
 </body>
