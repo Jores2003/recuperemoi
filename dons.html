@@ -1,32 +1,96 @@
-<script>
-const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voir les dons</title>
 
-fetch(API_URL)
-  .then(response => response.json())
-  .then(data => {
-    const container = document.getElementById("donations");
-    container.innerHTML = "";
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f7f7f7;
+    }
 
-    data.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "don-card";
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-      const photo = item["Photo de l’objet (upload)"] || "";
-      const type = item["Type d’objet"] || "Objet";
-      const etat = item["État de l’objet"] || "Non précisé";
-      const ville = item["Ville / Code postal"] || "Ville inconnue";
+    #donations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-      card.innerHTML = `
-        <img src="${photo}" alt="Photo du don" class="don-photo">
-        <h3>${type}</h3>
-        <p><strong>État :</strong> ${etat}</p>
-        <p><strong>Ville :</strong> ${ville}</p>
-      `;
+    .don-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
 
-      container.appendChild(card);
-    });
-  })
-  .catch(error => {
-    console.error("Erreur API :", error);
-  });
-</script>
+    .don-photo {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .don-card h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .don-card p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Les dons disponibles</h1>
+
+  <!-- Conteneur où les dons seront affichés -->
+  <div id="donations"></div>
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("donations");
+        container.innerHTML = "";
+
+        data.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "don-card";
+
+          const photo = item["Photo de l’objet (upload)"] || "";
+          const type = item["Type d’objet"] || "Objet";
+          const etat = item["État de l’objet"] || "Non précisé";
+          const ville = item["Ville / Code postal"] || "Ville inconnue";
+
+          card.innerHTML = `
+            <img src="${photo}" alt="Photo du don" class="don-photo">
+            <h3>${type}</h3>
+            <p><strong>État :</strong> ${etat}</p>
+            <p><strong>Ville :</strong> ${ville}</p>
+          `;
+
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error("Erreur API :", error);
+      });
+  </script>
+
+</body>
+</html>
