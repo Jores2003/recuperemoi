@@ -18,12 +18,8 @@
       --radius-img: 12px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, sans-serif;
       margin: 0;
       padding: 24px;
       background: var(--bg);
@@ -32,37 +28,22 @@
 
     h1 {
       text-align: center;
-      margin: 0 0 10px 0;
-      font-size: 26px;
+      margin-bottom: 10px;
     }
 
     .subtitle {
       text-align: center;
       margin-bottom: 24px;
       color: var(--text-muted);
-      font-size: 14px;
     }
 
-    /* Barre de filtres */
+    /* Filtres */
     .filters-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
       justify-content: center;
       margin-bottom: 20px;
-    }
-
-    .filters-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .filters-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-right: 4px;
     }
 
     .chip {
@@ -70,9 +51,8 @@
       border-radius: 999px;
       border: 1px solid #ddd;
       background: #fff;
-      font-size: 13px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      font-size: 13px;
     }
 
     .chip.active {
@@ -87,10 +67,9 @@
       border: 1px solid #ddd;
       font-size: 13px;
       background: #fff;
-      cursor: pointer;
     }
 
-    /* Grille des dons */
+    /* Grille */
     #donations {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -104,7 +83,7 @@
       padding: 14px;
       display: flex;
       flex-direction: column;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition: 0.2s;
     }
 
     .don-card:hover {
@@ -113,19 +92,18 @@
     }
 
     .don-photo-wrapper {
-      position: relative;
       border-radius: var(--radius-img);
       overflow: hidden;
       cursor: pointer;
       margin-bottom: 10px;
+      position: relative;
     }
 
     .don-photo {
       width: 100%;
       height: 190px;
       object-fit: cover;
-      display: block;
-      transition: transform 0.25s ease;
+      transition: 0.25s;
     }
 
     .don-photo-wrapper:hover .don-photo {
@@ -138,14 +116,9 @@
       right: 8px;
       background: rgba(0,0,0,0.6);
       color: #fff;
-      font-size: 11px;
       padding: 3px 7px;
+      font-size: 11px;
       border-radius: 999px;
-    }
-
-    .don-card h3 {
-      margin: 4px 0 6px 0;
-      font-size: 17px;
     }
 
     .don-meta {
@@ -154,22 +127,10 @@
       margin-bottom: 8px;
     }
 
-    .don-meta span {
-      display: inline-block;
-      margin-right: 8px;
-    }
-
-    .don-card p {
-      margin: 4px 0;
-      font-size: 13px;
-    }
-
     .don-actions {
       margin-top: auto;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 8px;
       margin-top: 10px;
     }
 
@@ -177,12 +138,8 @@
       padding: 7px 12px;
       border-radius: 999px;
       border: none;
-      font-size: 13px;
       cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      font-size: 13px;
     }
 
     .btn-primary {
@@ -190,45 +147,17 @@
       color: #fff;
     }
 
-    .btn-primary:hover {
-      background: #155a66;
-    }
-
     .btn-ghost {
       background: transparent;
       color: var(--primary);
-    }
-
-    .btn-ghost:hover {
-      background: var(--primary-light);
     }
 
     /* Pagination */
     .pagination {
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 10px;
       margin-top: 24px;
-    }
-
-    .pagination button {
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid #ccc;
-      background: #fff;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .pagination button:disabled {
-      opacity: 0.4;
-      cursor: default;
-    }
-
-    .pagination span {
-      font-size: 13px;
-      color: var(--text-muted);
     }
 
     /* Modal */
@@ -249,50 +178,20 @@
       width: 95%;
       max-height: 90vh;
       overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
       display: flex;
       flex-direction: column;
-    }
-
-    .modal-header {
-      padding: 12px 16px;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-title {
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .modal-close {
-      border: none;
-      background: transparent;
-      font-size: 20px;
-      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
     }
 
     .modal-body {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      grid-template-columns: 1.4fr 1fr;
       gap: 12px;
-      padding: 12px 16px 16px 16px;
+      padding: 16px;
     }
 
-    @media (max-width: 700px) {
-      .modal-body {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Carrousel */
-    .carousel {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
+    @media(max-width:700px){
+      .modal-body { grid-template-columns: 1fr; }
     }
 
     .carousel img {
@@ -302,30 +201,21 @@
       background: #000;
     }
 
-    .carousel-nav {
+    .carousel-btn {
       position: absolute;
       top: 50%;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
       transform: translateY(-50%);
-      padding: 0 8px;
-    }
-
-    .carousel-btn {
-      border: none;
       background: rgba(0,0,0,0.55);
       color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
-      width: 30px;
-      height: 30px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
     }
+
+    #prevPhoto { left: 10px; }
+    #nextPhoto { right: 10px; }
 
     .carousel-indicator {
       position: absolute;
@@ -333,26 +223,9 @@
       right: 10px;
       background: rgba(0,0,0,0.6);
       color: #fff;
-      font-size: 11px;
       padding: 3px 7px;
       border-radius: 999px;
-    }
-
-    .modal-details p {
-      margin: 4px 0;
-      font-size: 13px;
-    }
-
-    .modal-details .label {
-      font-weight: 600;
-    }
-
-    .modal-footer {
-      padding: 10px 16px 14px 16px;
-      border-top: 1px solid #eee;
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
+      font-size: 11px;
     }
   </style>
 </head>
@@ -360,37 +233,28 @@
 <body>
 
   <h1>Les dons disponibles</h1>
-  <p class="subtitle">Découvrez les objets donnés près de chez vous, filtrés par type, ville et état.</p>
+  <p class="subtitle">Découvrez les objets donnés près de chez vous.</p>
 
   <!-- Filtres -->
   <div class="filters-bar">
-    <div class="filters-group">
-      <span class="filters-label">Type :</span>
-      <button class="chip active" data-type="all">Tous</button>
-      <button class="chip" data-type="meuble">Meubles</button>
-      <button class="chip" data-type="jouet">Jouets</button>
-      <button class="chip" data-type="textile">Textile</button>
-      <button class="chip" data-type="électroménager">Électroménager</button>
-      <button class="chip" data-type="déco">Décoration</button>
-      <button class="chip" data-type="autre">Autre</button>
-    </div>
+    <button class="chip active" data-type="all">Tous</button>
+    <button class="chip" data-type="meuble">Meubles</button>
+    <button class="chip" data-type="jouet">Jouets</button>
+    <button class="chip" data-type="textile">Textile</button>
+    <button class="chip" data-type="électroménager">Électroménager</button>
+    <button class="chip" data-type="déco">Décoration</button>
+    <button class="chip" data-type="autre">Autre</button>
 
-    <div class="filters-group">
-      <span class="filters-label">Ville :</span>
-      <select id="filterCity">
-        <option value="all">Toutes</option>
-      </select>
-    </div>
+    <select id="filterCity">
+      <option value="all">Toutes les villes</option>
+    </select>
 
-    <div class="filters-group">
-      <span class="filters-label">État :</span>
-      <select id="filterState">
-        <option value="all">Tous</option>
-      </select>
-    </div>
+    <select id="filterState">
+      <option value="all">Tous les états</option>
+    </select>
   </div>
 
-  <!-- Grille des dons -->
+  <!-- Grille -->
   <div id="donations"></div>
 
   <!-- Pagination -->
@@ -403,26 +267,20 @@
   <!-- Modal -->
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title" id="modalTitle">Détail du don</div>
-        <button class="modal-close" id="modalClose">&times;</button>
-      </div>
       <div class="modal-body">
         <div class="carousel">
-          <img id="modalImage" src="" alt="Photo du don">
-          <div class="carousel-nav">
-            <button class="carousel-btn" id="prevPhoto">&#8249;</button>
-            <button class="carousel-btn" id="nextPhoto">&#8250;</button>
-          </div>
+          <img id="modalImage" src="">
+          <button class="carousel-btn" id="prevPhoto">&#8249;</button>
+          <button class="carousel-btn" id="nextPhoto">&#8250;</button>
           <div class="carousel-indicator" id="photoIndicator">1 / 1</div>
         </div>
-        <div class="modal-details" id="modalDetails">
-          <!-- rempli en JS -->
-        </div>
+
+        <div id="modalDetails"></div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-ghost" id="modalContact">Contacter le donneur</button>
-        <button class="btn btn-primary" id="modalCloseBottom">Fermer</button>
+
+      <div style="padding:12px; display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn btn-ghost" id="modalContact">Contacter</button>
+        <button class="btn btn-primary" id="modalClose">Fermer</button>
       </div>
     </div>
   </div>
@@ -430,8 +288,8 @@
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
 
-    let allDonations = [];
-    let filteredDonations = [];
+    let all = [];
+    let filtered = [];
     let currentType = "all";
     let currentCity = "all";
     let currentState = "all";
@@ -439,257 +297,159 @@
     const pageSize = 8;
 
     // Modal state
-    let currentPhotos = [];
-    let currentPhotoIndex = 0;
-    let currentContact = "";
+    let photos = [];
+    let photoIndex = 0;
+    let contactInfo = "";
 
-    // DOM refs
-    const donationsContainer = document.getElementById("donations");
-    const filterCity = document.getElementById("filterCity");
-    const filterState = document.getElementById("filterState");
-    const pageInfo = document.getElementById("pageInfo");
-    const prevPageBtn = document.getElementById("prevPage");
-    const nextPageBtn = document.getElementById("nextPage");
+    function normalize(item) {
+      return {
+        type: item["Type d’objet"] || "",
+        state: item["État de l’objet"] || "",
+        city: String(item["Ville / Code postal"] || "").trim(),
+        photos: item["Photo de l’objet (upload)"]
+          ? item["Photo de l’objet (upload)"].split(",").map(p => p.trim())
+          : [],
+        contact: item["Email ou téléphone"] || "",
+        submitted: item["Submitted at"] || ""
+      };
+    }
 
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalImage = document.getElementById("modalImage");
-    const photoIndicator = document.getElementById("photoIndicator");
-    const modalDetails = document.getElementById("modalDetails");
-    const modalClose = document.getElementById("modalClose");
-    const modalCloseBottom = document.getElementById("modalCloseBottom");
-    const prevPhotoBtn = document.getElementById("prevPhoto");
-    const nextPhotoBtn = document.getElementById("nextPhoto");
-    const modalContactBtn = document.getElementById("modalContact");
-
-    // Charger les données
     fetch(API_URL)
-      .then(response => response.json())
+      .then(r => r.json())
       .then(data => {
-        // Trier par date (plus récent en premier)
-        allDonations = data.sort((a, b) => new Date(b["Submitted at"]) - new Date(a["Submitted at"]));
-        buildFilterOptions();
-        applyFilters();
-      })
-      .catch(err => console.error("Erreur API :", err));
+        all = data.map(normalize)
+                 .sort((a,b) => new Date(b.submitted) - new Date(a.submitted));
 
-    function buildFilterOptions() {
+        buildFilters();
+        applyFilters();
+      });
+
+    function buildFilters() {
       const cities = new Set();
       const states = new Set();
 
-      allDonations.forEach(item => {
-        const city = (item["Ville / Code postal"] || "").trim();
-        const state = (item["État de l’objet"] || "").trim();
-
-        if (city) cities.add(city);
-        if (state) states.add(state);
+      all.forEach(d => {
+        if (d.city) cities.add(d.city);
+        if (d.state) states.add(d.state);
       });
 
-      [...cities].sort().forEach(city => {
-        const opt = document.createElement("option");
-        opt.value = city;
-        opt.textContent = city;
-        filterCity.appendChild(opt);
+      [...cities].sort().forEach(c => {
+        filterCity.innerHTML += `<option value="${c}">${c}</option>`;
       });
 
-      [...states].sort().forEach(state => {
-        const opt = document.createElement("option");
-        opt.value = state;
-        opt.textContent = state;
-        filterState.appendChild(opt);
+      [...states].sort().forEach(s => {
+        filterState.innerHTML += `<option value="${s}">${s}</option>`;
       });
     }
 
     function applyFilters() {
-      filteredDonations = allDonations.filter(item => {
-        const type = (item["Type d’objet"] || "").toLowerCase();
-        const city = (item["Ville / Code postal"] || "").trim();
-        const state = (item["État de l’objet"] || "").trim();
-
-        if (currentType !== "all" && !type.includes(currentType)) return false;
-        if (currentCity !== "all" && city !== currentCity) return false;
-        if (currentState !== "all" && state !== currentState) return false;
-
+      filtered = all.filter(d => {
+        if (currentType !== "all" && !d.type.toLowerCase().includes(currentType)) return false;
+        if (currentCity !== "all" && d.city !== currentCity) return false;
+        if (currentState !== "all" && d.state !== currentState) return false;
         return true;
       });
 
       currentPage = 1;
-      renderDonations();
+      render();
       updatePagination();
     }
 
-    function renderDonations() {
-      donationsContainer.innerHTML = "";
+    function render() {
+      const container = document.getElementById("donations");
+      container.innerHTML = "";
 
       const start = (currentPage - 1) * pageSize;
-      const end = start + pageSize;
-      const pageItems = filteredDonations.slice(start, end);
+      const pageItems = filtered.slice(start, start + pageSize);
 
       pageItems.forEach(item => {
         const card = document.createElement("div");
         card.className = "don-card";
 
-        const photos = (item["Photo de l’objet (upload)"] || "")
-          .split(",")
-          .map(p => p.trim())
-          .filter(p => p);
-
-        const photo = photos[0] || "";
-        const type = item["Type d’objet"] || "Objet";
-        const etat = item["État de l’objet"] || "Non précisé";
-        const ville = item["Ville / Code postal"] || "Ville inconnue";
-        const contact = item["Email ou téléphone"] || "";
-        const submitted = item["Submitted at"] || "";
-
-        const metaPieces = [];
-        if (ville) metaPieces.push(ville);
-        if (etat) metaPieces.push(etat);
-
-        const metaText = metaPieces.join(" • ");
+        const photo = item.photos[0] || "https://via.placeholder.com/300x200?text=Pas+de+photo";
 
         card.innerHTML = `
           <div class="don-photo-wrapper">
-            <img src="${photo}" alt="Photo du don" class="don-photo">
-            ${photos.length > 1 ? `<div class="photo-badge">${photos.length} photos</div>` : ""}
+            <img src="${photo}" class="don-photo">
+            ${item.photos.length > 1 ? `<div class="photo-badge">${item.photos.length} photos</div>` : ""}
           </div>
-          <h3>${type}</h3>
-          <div class="don-meta">${metaText}</div>
-          ${submitted ? `<p><span style="font-size:12px;color:#999;">Ajouté le ${submitted}</span></p>` : ""}
+
+          <h3>${item.type}</h3>
+          <div class="don-meta">${item.city} • ${item.state}</div>
+          <p style="font-size:12px;color:#999;">Ajouté le ${new Date(item.submitted).toLocaleDateString("fr-FR")}</p>
+
           <div class="don-actions">
             <button class="btn btn-ghost btn-details">Détails</button>
             <button class="btn btn-primary btn-contact">Contacter</button>
           </div>
         `;
 
-        // Clic sur l'image → modal
-        card.querySelector(".don-photo-wrapper").addEventListener("click", () => {
-          openModal(item, photos);
-        });
+        card.querySelector(".don-photo-wrapper").onclick = () => openModal(item);
+        card.querySelector(".btn-details").onclick = () => openModal(item);
+        card.querySelector(".btn-contact").onclick = () => alert("Contact : " + item.contact);
 
-        // Bouton Détails → modal
-        card.querySelector(".btn-details").addEventListener("click", () => {
-          openModal(item, photos);
-        });
-
-        // Bouton Contacter → alert simple
-        card.querySelector(".btn-contact").addEventListener("click", () => {
-          if (contact) {
-            alert("Contact du donneur : " + contact);
-          } else {
-            alert("Contact non renseigné.");
-          }
-        });
-
-        donationsContainer.appendChild(card);
+        container.appendChild(card);
       });
-
-      if (filteredDonations.length === 0) {
-        donationsContainer.innerHTML = "<p>Aucun don ne correspond à ces filtres pour le moment.</p>";
-      }
     }
 
     function updatePagination() {
-      const totalPages = Math.max(1, Math.ceil(filteredDonations.length / pageSize));
+      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
       pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
-      prevPageBtn.disabled = currentPage === 1;
-      nextPageBtn.disabled = currentPage === totalPages;
+      prevPage.disabled = currentPage === 1;
+      nextPage.disabled = currentPage === totalPages;
     }
 
-    // Filtres type
-    document.querySelectorAll(".chip[data-type]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".chip[data-type]").forEach(b => b.classList.remove("active"));
+    prevPage.onclick = () => { currentPage--; render(); updatePagination(); };
+    nextPage.onclick = () => { currentPage++; render(); updatePagination(); };
+
+    document.querySelectorAll(".chip").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         currentType = btn.dataset.type;
         applyFilters();
-      });
+      };
     });
 
-    // Filtres ville / état
-    filterCity.addEventListener("change", () => {
-      currentCity = filterCity.value;
-      applyFilters();
-    });
+    filterCity.onchange = () => { currentCity = filterCity.value; applyFilters(); };
+    filterState.onchange = () => { currentState = filterState.value; applyFilters(); };
 
-    filterState.addEventListener("change", () => {
-      currentState = filterState.value;
-      applyFilters();
-    });
+    function openModal(item) {
+      photos = item.photos.length ? item.photos : ["https://via.placeholder.com/600x400?text=Pas+de+photo"];
+      photoIndex = 0;
+      contactInfo = item.contact;
 
-    // Pagination
-    prevPageBtn.addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderDonations();
-        updatePagination();
-      }
-    });
-
-    nextPageBtn.addEventListener("click", () => {
-      const totalPages = Math.max(1, Math.ceil(filteredDonations.length / pageSize));
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderDonations();
-        updatePagination();
-      }
-    });
-
-    // Modal
-    function openModal(item, photos) {
-      currentPhotos = photos.length ? photos : [""];
-      currentPhotoIndex = 0;
-      currentContact = item["Email ou téléphone"] || "";
-
-      modalTitle.textContent = item["Type d’objet"] || "Détail du don";
       updateModalPhoto();
 
       modalDetails.innerHTML = `
-        <p><span class="label">Type :</span> ${item["Type d’objet"] || "Non précisé"}</p>
-        <p><span class="label">État :</span> ${item["État de l’objet"] || "Non précisé"}</p>
-        <p><span class="label">Ville / Code postal :</span> ${item["Ville / Code postal"] || "Non précisé"}</p>
-        <p><span class="label">Ajouté le :</span> ${item["Submitted at"] || "Non précisé"}</p>
-        <p><span class="label">Contact :</span> ${currentContact || "Non renseigné"}</p>
+        <p><strong>Type :</strong> ${item.type}</p>
+        <p><strong>État :</strong> ${item.state}</p>
+        <p><strong>Ville :</strong> ${item.city}</p>
+        <p><strong>Ajouté le :</strong> ${new Date(item.submitted).toLocaleDateString("fr-FR")}</p>
+        <p><strong>Contact :</strong> ${item.contact}</p>
       `;
 
       modalBackdrop.style.display = "flex";
     }
 
     function updateModalPhoto() {
-      const total = currentPhotos.length;
-      const src = currentPhotos[currentPhotoIndex] || "";
-      modalImage.src = src;
-      photoIndicator.textContent = `${currentPhotoIndex + 1} / ${total}`;
+      modalImage.src = photos[photoIndex];
+      photoIndicator.textContent = `${photoIndex + 1} / ${photos.length}`;
     }
 
-    function closeModal() {
-      modalBackdrop.style.display = "none";
-    }
-
-    modalClose.addEventListener("click", closeModal);
-    modalCloseBottom.addEventListener("click", closeModal);
-    modalBackdrop.addEventListener("click", (e) => {
-      if (e.target === modalBackdrop) closeModal();
-    });
-
-    prevPhotoBtn.addEventListener("click", () => {
-      if (currentPhotos.length <= 1) return;
-      currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotos.length) % currentPhotos.length;
+    prevPhoto.onclick = () => {
+      photoIndex = (photoIndex - 1 + photos.length) % photos.length;
       updateModalPhoto();
-    });
+    };
 
-    nextPhotoBtn.addEventListener("click", () => {
-      if (currentPhotos.length <= 1) return;
-      currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotos.length;
+    nextPhoto.onclick = () => {
+      photoIndex = (photoIndex + 1) % photos.length;
       updateModalPhoto();
-    });
+    };
 
-    modalContactBtn.addEventListener("click", () => {
-      if (currentContact) {
-        alert("Contact du donneur : " + currentContact);
-      } else {
-        alert("Contact non renseigné.");
-      }
-    });
+    modalClose.onclick = () => modalBackdrop.style.display = "none";
+    modalContact.onclick = () => alert("Contact : " + contactInfo);
+    modalBackdrop.onclick = e => { if (e.target === modalBackdrop) modalBackdrop.style.display = "none"; };
   </script>
 
 </body>
