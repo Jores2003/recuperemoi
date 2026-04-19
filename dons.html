@@ -54,23 +54,6 @@
       padding:0 20px;
     }
 
-    .filters {
-      background:white;
-      padding:20px;
-      border-radius:10px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.08);
-      margin-bottom:25px;
-      border-left:6px solid #2F855A;
-    }
-
-    .filters select {
-      padding:10px;
-      border-radius:6px;
-      border:1px solid #ccc;
-      margin-right:10px;
-      font-size:1em;
-    }
-
     .grid {
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
@@ -121,21 +104,11 @@
     .btn-contact:hover {
       background:#276749;
     }
-
-    footer {
-      text-align:center;
-      padding:25px;
-      margin-top:40px;
-      background:#E8EEE9;
-      border-top:4px solid #C6D5D0;
-      font-size:0.9em;
-    }
   </style>
 </head>
 
 <body>
 
-<!-- MENU -->
 <nav>
   <a href="index.html">Accueil</a>
   <a href="deposer.html">Déposer un objet</a>
@@ -146,76 +119,39 @@
 
 <header>
   <h1>Voir les dons disponibles</h1>
-  <p>Découvrez les objets donnés par les utilisateurs et contactez-les directement.</p>
+  <p>Les dons apparaissent automatiquement dès qu’un utilisateur remplit le formulaire.</p>
 </header>
 
 <div class="container">
-
-  <!-- FILTRES -->
-  <div class="filters">
-    <label>Catégorie :</label>
-    <select>
-      <option value="">Toutes</option>
-      <option>Meubles</option>
-      <option>Électroménager</option>
-      <option>Vêtements</option>
-      <option>Livres</option>
-      <option>Jouets</option>
-      <option>Décoration</option>
-      <option>Informatique</option>
-    </select>
-
-    <label>Ville :</label>
-    <select>
-      <option value="">Toutes</option>
-      <option>Paris</option>
-      <option>Lyon</option>
-      <option>Marseille</option>
-      <option>Nice</option>
-      <option>Lille</option>
-    </select>
-  </div>
-
-  <!-- GRILLE DES DONS (exemples statiques) -->
-  <div class="grid">
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300x180" alt="Objet">
-      <div class="card-content">
-        <h3>Chaise en bois</h3>
-        <p>Catégorie : Meubles</p>
-        <p>Ville : Nice</p>
-        <a href="mailto:exemple@mail.com" class="btn-contact">Contacter le donneur</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300x180" alt="Objet">
-      <div class="card-content">
-        <h3>Micro-ondes</h3>
-        <p>Catégorie : Électroménager</p>
-        <p>Ville : Marseille</p>
-        <a href="mailto:exemple@mail.com" class="btn-contact">Contacter le donneur</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300x180" alt="Objet">
-      <div class="card-content">
-        <h3>Lot de vêtements</h3>
-        <p>Catégorie : Vêtements</p>
-        <p>Ville : Paris</p>
-        <a href="mailto:exemple@mail.com" class="btn-contact">Contacter le donneur</a>
-      </div>
-    </div>
-
-  </div>
-
+  <div id="donGrid" class="grid"></div>
 </div>
 
-<footer>
-  <p>© 2026 RecupèreMoi – Plateforme de dons gratuits</p>
-</footer>
+<script>
+  const API_URL = "https://script.google.com/macros/s/AKfycbwZmP_KL9ZA9BZFJjhUEHYqqeAkmglU5AUbmLBU2_kbW_uTW0Vt2NNpAllx2XS8O8sQFw/exec";
+
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+      const grid = document.getElementById("donGrid");
+
+      data.forEach(don => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <img src="${don['Photo']}" alt="Objet">
+          <div class="card-content">
+            <h3>${don['Nom de l’objet']}</h3>
+            <p>Catégorie : ${don['Catégorie']}</p>
+            <p>Ville : ${don['Ville']}</p>
+            <a href="mailto:${don['Email']}" class="btn-contact">Contacter le donneur</a>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    });
+</script>
 
 </body>
 </html>
