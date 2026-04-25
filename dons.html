@@ -89,6 +89,14 @@
       background: #f0f0f0;
     }
 
+    select {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      font-size: 13px;
+      background: #fff;
+    }
+
     #donations {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -300,7 +308,6 @@
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
 
-    let communes = [];
     let all = [];
     let filtered = [];
     let currentType = "all";
@@ -312,10 +319,6 @@
     let photos = [];
     let photoIndex = 0;
     let contactInfo = "";
-
-    fetch("communes.json")
-      .then(r => r.json())
-      .then(data => communes = data);
 
     function normalize(item) {
       return {
@@ -420,19 +423,25 @@
 
     filterState.onchange = () => { currentState = filterState.value; applyFilters(); };
 
+    async function searchCommunes(query) {
+      const url = `https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(query)}&fields=nom,codesPostaux&limit=10`;
+      const response = await fetch(url);
+      return await response.json();
+    }
+
     const cityInput = document.getElementById("citySearch");
     const suggestions = document.getElementById("citySuggestions");
 
-    cityInput.addEventListener("input", () => {
+    cityInput.addEventListener("input", async () => {
       const q = cityInput.value.toLowerCase().trim();
       if (!q) {
         suggestions.style.display = "none";
+        currentCity = "all";
+        applyFilters();
         return;
       }
 
-      const results = communes
-        .filter(c => c.nom.toLowerCase().startsWith(q))
-        .slice(0, 10);
+      const results = await searchCommunes(q);
 
       suggestions.innerHTML = results
         .map(c => `<div data-city="${c.nom}">${c.nom} (${c.codesPostaux[0]})</div>`)
