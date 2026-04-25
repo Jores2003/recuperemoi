@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion – RécupèreMoi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2E7D32;
+      --dark: #1E1E1E;
+      --gray: #6E6E6E;
+      --light: #F5F5F5;
+      --white: #FFFFFF;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    nav .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 60px auto;
+      background: var(--white);
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 18px;
+      border: 1px solid #CCCCCC;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #256628;
+    }
+
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 15px;
+      color: var(--gray);
+    }
+
+    .message a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">RécupèreMoi</div>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="signup.html">Créer un compte</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Connexion</h2>
+
+    <input type="email" id="email" placeholder="Adresse email" required>
+    <input type="password" id="password" placeholder="Mot de passe" required>
+
+    <button id="loginBtn">Se connecter</button>
+
+    <div class="message">
+      Pas encore de compte ? <a href="signup.html">Créer un compte</a>
+    </div>
+  </div>
+
+  <!-- Import Firebase -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- Script de connexion -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+    const btn = document.getElementById("loginBtn");
+
+    btn.addEventListener("click", async () => {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || !password) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+
+        alert("Connexion réussie !");
+        window.location.href = "index.html"; // Redirection après connexion
+
+      } catch (error) {
+        alert("Erreur : " + error.message);
+      }
+    });
+  </script>
+
+</body>
+</html>
