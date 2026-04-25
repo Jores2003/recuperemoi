@@ -37,13 +37,13 @@
       color: var(--text-muted);
     }
 
-    /* Filtres */
     .filters-bar {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
       margin-bottom: 20px;
+      position: relative;
     }
 
     .chip {
@@ -61,15 +61,34 @@
       border-color: var(--primary);
     }
 
-    select {
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      font-size: 13px;
-      background: #fff;
+    #citySearch {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 220px;
     }
 
-    /* Grille */
+    .suggestions {
+      position: absolute;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      width: 220px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .suggestions div {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .suggestions div:hover {
+      background: #f0f0f0;
+    }
+
     #donations {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -152,7 +171,6 @@
       color: var(--primary);
     }
 
-    /* Pagination */
     .pagination {
       display: flex;
       justify-content: center;
@@ -160,7 +178,6 @@
       margin-top: 24px;
     }
 
-    /* Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -235,7 +252,6 @@
   <h1>Les dons disponibles</h1>
   <p class="subtitle">Découvrez les objets donnés près de chez vous.</p>
 
-  <!-- Filtres -->
   <div class="filters-bar">
     <button class="chip active" data-type="all">Tous</button>
     <button class="chip" data-type="meuble">Meubles</button>
@@ -245,26 +261,22 @@
     <button class="chip" data-type="déco">Décoration</button>
     <button class="chip" data-type="autre">Autre</button>
 
-    <select id="filterCity">
-      <option value="all">Toutes les villes</option>
-    </select>
+    <input type="text" id="citySearch" placeholder="Rechercher une ville..." autocomplete="off">
+    <div id="citySuggestions" class="suggestions"></div>
 
     <select id="filterState">
       <option value="all">Tous les états</option>
     </select>
   </div>
 
-  <!-- Grille -->
   <div id="donations"></div>
 
-  <!-- Pagination -->
   <div class="pagination">
     <button id="prevPage">&lt;</button>
     <span id="pageInfo">Page 1</span>
     <button id="nextPage">&gt;</button>
   </div>
 
-  <!-- Modal -->
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal">
       <div class="modal-body">
@@ -288,6 +300,7 @@
   <script>
     const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
 
+    let communes = [];
     let all = [];
     let filtered = [];
     let currentType = "all";
@@ -296,10 +309,13 @@
     let currentPage = 1;
     const pageSize = 8;
 
-    // Modal state
     let photos = [];
     let photoIndex = 0;
     let contactInfo = "";
+
+    fetch("communes.json")
+      .then(r => r.json())
+      .then(data => communes = data);
 
     function normalize(item) {
       return {
@@ -320,22 +336,13 @@
         all = data.map(normalize)
                  .sort((a,b) => new Date(b.submitted) - new Date(a.submitted));
 
-        buildFilters();
+        buildStateFilter();
         applyFilters();
       });
 
-    function buildFilters() {
-      const cities = new Set();
+    function buildStateFilter() {
       const states = new Set();
-
-      all.forEach(d => {
-        if (d.city) cities.add(d.city);
-        if (d.state) states.add(d.state);
-      });
-
-      [...cities].sort().forEach(c => {
-        filterCity.innerHTML += `<option value="${c}">${c}</option>`;
-      });
+      all.forEach(d => { if (d.state) states.add(d.state); });
 
       [...states].sort().forEach(s => {
         filterState.innerHTML += `<option value="${s}">${s}</option>`;
@@ -345,7 +352,7 @@
     function applyFilters() {
       filtered = all.filter(d => {
         if (currentType !== "all" && !d.type.toLowerCase().includes(currentType)) return false;
-        if (currentCity !== "all" && d.city !== currentCity) return false;
+        if (currentCity !== "all" && !d.city.toLowerCase().includes(currentCity.toLowerCase())) return false;
         if (currentState !== "all" && d.state !== currentState) return false;
         return true;
       });
@@ -411,8 +418,37 @@
       };
     });
 
-    filterCity.onchange = () => { currentCity = filterCity.value; applyFilters(); };
     filterState.onchange = () => { currentState = filterState.value; applyFilters(); };
+
+    const cityInput = document.getElementById("citySearch");
+    const suggestions = document.getElementById("citySuggestions");
+
+    cityInput.addEventListener("input", () => {
+      const q = cityInput.value.toLowerCase().trim();
+      if (!q) {
+        suggestions.style.display = "none";
+        return;
+      }
+
+      const results = communes
+        .filter(c => c.nom.toLowerCase().startsWith(q))
+        .slice(0, 10);
+
+      suggestions.innerHTML = results
+        .map(c => `<div data-city="${c.nom}">${c.nom} (${c.codesPostaux[0]})</div>`)
+        .join("");
+
+      suggestions.style.display = results.length ? "block" : "none";
+    });
+
+    suggestions.addEventListener("click", (e) => {
+      if (e.target.dataset.city) {
+        cityInput.value = e.target.dataset.city;
+        currentCity = e.target.dataset.city;
+        suggestions.style.display = "none";
+        applyFilters();
+      }
+    });
 
     function openModal(item) {
       photos = item.photos.length ? item.photos : ["https://via.placeholder.com/600x400?text=Pas+de+photo"];
