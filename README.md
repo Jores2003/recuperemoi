@@ -2,171 +2,249 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>RecupèreMoi - Plateforme de dons gratuits</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RécupèreMoi – Donnez une seconde vie à vos objets</title>
+
+  <!-- Typographie moderne -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --primary: #2E7D32;
+      --primary-light: #A5D6A7;
+      --dark: #1E1E1E;
+      --gray: #6E6E6E;
+      --light: #F5F5F5;
+      --white: #FFFFFF;
+    }
+
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background:#F3F7F4;
-      color:#1F2D1F;
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--dark);
       line-height: 1.6;
     }
 
+    /* NAVBAR */
     nav {
-      background:#276749;
-      padding:12px 0;
-      text-align:center;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    nav a {
-      color:white;
-      text-decoration:none;
-      margin:0 18px;
-      font-weight:600;
-      font-size:1.05em;
-      transition:0.2s;
+    nav .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary);
     }
 
-    nav a:hover {
-      color:#C6F6D5;
+    nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
-    header {
-      background:#2F855A;
-      color:white;
-      padding:50px 20px;
-      text-align:center;
-      border-bottom: 6px solid #276749;
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
     }
 
-    header img {
-      width:260px;
-      margin-bottom:20px;
+    nav ul li a:hover {
+      color: var(--primary);
     }
 
-    h1 {
-      font-size: 2.4em;
-      margin: 0 0 10px;
-      font-weight: 700;
+    /* HERO */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 40px;
+      background: linear-gradient(135deg, #E8F5E9, #FFFFFF);
     }
 
-    p.subtitle {
-      font-size: 1.2em;
-      opacity: 0.95;
-      margin-bottom: 25px;
+    .hero-text {
+      max-width: 520px;
     }
 
-    .btn {
-      display:inline-block;
-      padding:12px 25px;
-      background:white;
-      color:#2F855A;
-      text-decoration:none;
-      border-radius:6px;
-      font-weight:bold;
-      font-size:1.1em;
-      transition:0.2s;
-      border:2px solid white;
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 16px;
     }
 
-    .btn:hover {
-      background:#C6F6D5;
-      border-color:#C6F6D5;
-      transform: scale(1.05);
+    .hero p {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 28px;
     }
 
-    .container {
-      max-width:900px;
-      margin:40px auto;
-      padding:0 20px;
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      padding: 14px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
     }
 
+    .btn-primary:hover {
+      background: #256628;
+    }
+
+    .hero img {
+      width: 420px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    /* SECTIONS */
     section {
-      background:white;
-      padding:25px;
-      margin-bottom:25px;
-      border-radius:10px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.06);
-      border-left:6px solid #2F855A;
+      padding: 80px 40px;
     }
 
     h2 {
-      margin-top:0;
-      color:#276749;
-      font-size:1.6em;
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 50px;
+      font-weight: 600;
     }
 
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-top: 12px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    /* FOOTER */
     footer {
-      text-align:center;
-      padding:25px;
-      font-size:0.9em;
-      color:#1F2D1F;
-      margin-top:40px;
-      background:#E8EEE9;
-      border-top:4px solid #C6D5D0;
+      background: var(--dark);
+      color: var(--white);
+      padding: 40px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer p {
+      margin: 6px 0;
+      color: #CCCCCC;
     }
   </style>
 </head>
 
 <body>
 
-<!-- MENU -->
-<nav>
-  <a href="index.html">Accueil</a>
-  <a href="deposer.html">Déposer un objet</a>
-  <a href="dons.html">Voir les dons</a>
-  <a href="apropos.html">À propos</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
-<header>
-  <img src="Logo-RecupereMoi.png" alt="Logo RecupèreMoi">
-  <h1>RecupèreMoi</h1>
-  <p class="subtitle">La plateforme qui connecte les dons aux personnes et associations qui en ont besoin.</p>
-  <a href="deposer.html" class="btn">Déposer un objet</a>
-</header>
-
-<div class="container">
-
-  <section>
-    <h2>🎁 Donnez facilement, récupérez librement</h2>
-    <p>RecupèreMoi est une plateforme simple et gratuite où chacun peut :</p>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">RécupèreMoi</div>
     <ul>
-      <li>Déposer un objet qu’il souhaite donner</li>
-      <li>Consulter les dons disponibles autour de lui</li>
-      <li>Contacter directement le donneur par email</li>
-      <li>Récupérer gratuitement les objets</li>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="deposer.html">Déposer un objet</a></li>
+      <li><a href="dons.html">Voir les dons</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
-    <p>Aucune vente, aucun échange, aucun paiement. Juste du don.</p>
-  </section>
+  </nav>
 
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Donnez une seconde vie à vos objets</h1>
+      <p>RécupèreMoi connecte les dons aux personnes et associations qui en ont besoin. Gratuit, simple et solidaire.</p>
+      <a href="dons.html" class="btn-primary">Voir les dons disponibles</a>
+    </div>
+
+    <img src="Logo-RecupereMoi.png" alt="Illustration RécupèreMoi">
+  </div>
+
+  <!-- POURQUOI -->
   <section>
-    <h2>🌱 Pour les particuliers et les associations</h2>
-    <p>Les particuliers peuvent donner ou récupérer des objets.  
-    Les associations, ressourceries et structures solidaires peuvent également consulter les dons et récupérer ce dont elles ont besoin pour leurs activités.</p>
+    <h2>Pourquoi utiliser RécupèreMoi ?</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🎁 Donnez facilement</h3>
+        <p>Déposez un objet en quelques secondes. Aucune vente, aucun échange, juste du don.</p>
+      </div>
+
+      <div class="card">
+        <h3>📍 Autour de vous</h3>
+        <p>Consultez les dons disponibles près de chez vous grâce à la recherche intelligente.</p>
+      </div>
+
+      <div class="card">
+        <h3>🤝 Pour tous</h3>
+        <p>Particuliers, associations, ressourceries : tout le monde peut donner ou récupérer.</p>
+      </div>
+
+      <div class="card">
+        <h3>🌱 Impact positif</h3>
+        <p>Réduisez les déchets et favorisez le réemploi solidaire.</p>
+      </div>
+    </div>
   </section>
 
+  <!-- COMMENT ÇA MARCHE -->
   <section>
-    <h2>📦 Comment ça marche ?</h2>
-    <ul>
-      <li>Vous déposez un objet via un formulaire simple</li>
-      <li>Votre don apparaît dans la page “Voir les dons”</li>
-      <li>Les personnes intéressées vous contactent directement</li>
-      <li>Vous convenez ensemble d’un lieu de récupération</li>
-    </ul>
+    <h2>Comment ça marche ?</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>1. Déposez un objet</h3>
+        <p>Ajoutez une photo, une description et votre ville.</p>
+      </div>
+
+      <div class="card">
+        <h3>2. Il apparaît sur la plateforme</h3>
+        <p>Les utilisateurs proches peuvent le voir immédiatement.</p>
+      </div>
+
+      <div class="card">
+        <h3>3. Contact direct</h3>
+        <p>Une personne intéressée vous contacte par email.</p>
+      </div>
+
+      <div class="card">
+        <h3>4. Vous donnez</h3>
+        <p>Simple, gratuit, solidaire.</p>
+      </div>
+    </div>
   </section>
 
-</div>
-
-<footer>
-  <p><strong>RecupèreMoi</strong> – Plateforme de dons gratuits.</p>
-  <p><a href="index.html">Accueil</a> • <a href="apropos.html">À propos</a></p>
-  <p style="margin-top:15px;">© 2026 RecupèreMoi</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>RécupèreMoi — Plateforme de dons gratuits</p>
+    <p>© 2026 — Tous droits réservés</p>
+  </footer>
 
 </body>
 </html>
