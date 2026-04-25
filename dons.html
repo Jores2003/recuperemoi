@@ -272,6 +272,8 @@
     <input type="text" id="citySearch" placeholder="Rechercher une ville..." autocomplete="off">
     <div id="citySuggestions" class="suggestions"></div>
 
+    <button class="chip" id="nearMe">Autour de moi</button>
+
     <select id="filterState">
       <option value="all">Tous les états</option>
     </select>
@@ -319,6 +321,28 @@
     let photos = [];
     let photoIndex = 0;
     let contactInfo = "";
+
+    function distanceKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a =
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+        Math.sin(dLon/2) * Math.sin(dLon/2);
+      return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+    }
+
+    async function getCoordsFromPostal(postal) {
+      const url = `https://geo.api.gouv.fr/communes?codePostal=${encodeURIComponent(postal)}&fields=centre&limit=1`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (!data.length || !data[0].centre) return null;
+      return {
+        lat: data[0].centre.coordinates[1],
+        lon: data[0].centre.coordinates[0]
+      };
+    }
 
     function normalize(item) {
       return {
@@ -413,8 +437,11 @@
     nextPage.onclick = () => { currentPage++; render(); updatePagination(); };
 
     document.querySelectorAll(".chip").forEach(btn => {
+      if (btn.id === "nearMe") return;
       btn.onclick = () => {
-        document.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".chip").forEach(b => {
+          if (b.id !== "nearMe") b.classList.remove("active");
+        });
         btn.classList.add("active");
         currentType = btn.dataset.type;
         applyFilters();
@@ -444,7 +471,7 @@
       const results = await searchCommunes(q);
 
       suggestions.innerHTML = results
-        .map(c => `<div data-city="${c.nom}">${c.nom} (${c.codesPostaux[0]})</div>`)
+        .map(c => `<div data-city="${c.nom}" data-postal="${c.codesPostaux[0]}">${c.nom} (${c.codesPostaux[0]})</div>`)
         .join("");
 
       suggestions.style.display = results.length ? "block" : "none";
@@ -453,10 +480,45 @@
     suggestions.addEventListener("click", (e) => {
       if (e.target.dataset.city) {
         cityInput.value = e.target.dataset.city;
-        currentCity = e.target.dataset.city;
+        currentCity = e.target.dataset.postal || e.target.dataset.city;
         suggestions.style.display = "none";
         applyFilters();
       }
+    });
+
+    document.getElementById("nearMe").addEventListener("click", () => {
+      if (!navigator.geolocation) {
+        alert("La géolocalisation n'est pas supportée par votre navigateur.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(async (pos) => {
+        const userLat = pos.coords.latitude;
+        const userLon = pos.coords.longitude;
+        const radius = 20; // km
+
+        const results = [];
+
+        for (const item of all) {
+          const postal = item.city;
+          if (!postal) continue;
+
+          const coords = await getCoordsFromPostal(postal);
+          if (!coords) continue;
+
+          const d = distanceKm(userLat, userLon, coords.lat, coords.lon);
+          if (d <= radius) {
+            results.push(item);
+          }
+        }
+
+        filtered = results;
+        currentPage = 1;
+        render();
+        updatePagination();
+      }, () => {
+        alert("Impossible d'obtenir votre position.");
+      });
     });
 
     function openModal(item) {
