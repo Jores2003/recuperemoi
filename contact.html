@@ -10,7 +10,6 @@
   <style>
     :root {
       --primary: #2E7D32;
-      --primary-light: #A5D6A7;
       --dark: #1E1E1E;
       --gray: #6E6E6E;
       --light: #F5F5F5;
@@ -61,87 +60,46 @@
       color: var(--primary);
     }
 
-    /* HEADER SECTION */
-    .header-section {
-      padding: 60px 40px;
-      text-align: center;
-      background: linear-gradient(135deg, #E8F5E9, #FFFFFF);
-      margin-bottom: 40px;
-    }
-
-    .header-section h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .header-section p {
-      color: var(--gray);
-      font-size: 18px;
-    }
-
-    /* CONTACT CONTAINER */
-    .contact-container {
-      max-width: 900px;
-      margin: auto;
+    /* CONTENU */
+    .container {
+      max-width: 700px;
+      margin: 60px auto;
       background: var(--white);
       padding: 40px;
-      border-radius: 16px;
+      border-radius: 14px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
     }
 
-    .contact-info {
+    h2 {
+      text-align: center;
+      font-size: 28px;
       margin-bottom: 30px;
-      font-size: 16px;
-      color: var(--gray);
+      font-weight: 600;
     }
 
-    /* FORM */
-    form {
-      display: grid;
-      gap: 20px;
-    }
-
-    input, textarea {
+    form input, form textarea {
       width: 100%;
       padding: 14px;
+      margin-bottom: 18px;
+      border: 1px solid #CCCCCC;
       border-radius: 8px;
-      border: 1px solid #ccc;
       font-size: 15px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    textarea {
-      height: 160px;
-      resize: none;
     }
 
     button {
+      width: 100%;
+      padding: 14px;
       background: var(--primary);
       color: var(--white);
-      padding: 14px 20px;
       border: none;
       border-radius: 8px;
       font-size: 16px;
-      cursor: pointer;
       font-weight: 500;
+      cursor: pointer;
     }
 
     button:hover {
       background: #256628;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--dark);
-      color: var(--white);
-      padding: 40px;
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    footer p {
-      margin: 6px 0;
-      color: #CCCCCC;
     }
   </style>
 </head>
@@ -157,37 +115,50 @@
       <li><a href="dons.html">Voir les dons</a></li>
       <li><a href="apropos.html">À propos</a></li>
       <li><a href="contact.html">Contact</a></li>
+
+      <!-- BOUTON DÉCONNEXION -->
+      <li><a href="#" id="logoutBtn" style="display:none;">Déconnexion</a></li>
     </ul>
   </nav>
 
-  <!-- HEADER -->
-  <div class="header-section">
-    <h1>Contactez-nous</h1>
-    <p>Une question ? Une suggestion ? Nous sommes là pour vous aider.</p>
-  </div>
-
-  <!-- CONTACT FORM -->
-  <div class="contact-container">
-
-    <div class="contact-info">
-      Vous pouvez nous écrire directement via ce formulaire.  
-      Nous vous répondrons dans les plus brefs délais.
-    </div>
+  <!-- CONTENU -->
+  <div class="container">
+    <h2>Contactez-nous</h2>
 
     <form action="mailto:recuperemoi.contact@gmail.com" method="POST" enctype="text/plain">
-      <input type="text" name="Nom" placeholder="Votre nom" required>
-      <input type="email" name="Email" placeholder="Votre email" required>
-      <textarea name="Message" placeholder="Votre message" required></textarea>
-      <button type="submit">Envoyer le message</button>
+      <input type="text" name="name" placeholder="Votre nom" required>
+      <input type="email" name="email" placeholder="Votre email" required>
+      <textarea name="message" rows="6" placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer</button>
     </form>
-
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>RécupèreMoi — Plateforme de dons gratuits</p>
-    <p>© 2026 — Tous droits réservés</p>
-  </footer>
+  <!-- Firebase -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- Détection + Déconnexion -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // Afficher le bouton uniquement si l'utilisateur est connecté
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        logoutBtn.style.display = "block";
+      } else {
+        logoutBtn.style.display = "none";
+      }
+    });
+
+    // Déconnexion
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      alert("Vous êtes déconnecté.");
+      window.location.href = "index.html";
+    });
+  </script>
 
 </body>
 </html>
