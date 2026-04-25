@@ -24,7 +24,6 @@
       color: var(--dark);
     }
 
-    /* NAVBAR */
     nav {
       display: flex;
       justify-content: space-between;
@@ -61,7 +60,6 @@
       color: var(--primary);
     }
 
-    /* HEADER SECTION */
     .header-section {
       padding: 60px 40px;
       text-align: center;
@@ -79,7 +77,6 @@
       font-size: 18px;
     }
 
-    /* FILTERS */
     .filters {
       display: flex;
       flex-wrap: wrap;
@@ -139,151 +136,11 @@
       font-size: 14px;
       background: var(--white);
     }
-
-    /* GRID */
-    #donations {
-      padding: 20px 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      overflow: hidden;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .card-body {
-      padding: 16px;
-    }
-
-    .card-body h3 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .card-body p {
-      margin: 6px 0;
-      color: var(--gray);
-      font-size: 14px;
-    }
-
-    /* PAGINATION */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 30px;
-    }
-
-    .pagination button {
-      padding: 10px 16px;
-      border-radius: 8px;
-      border: none;
-      background: var(--primary);
-      color: var(--white);
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .pagination button:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-
-    /* MODAL */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-    }
-
-    .modal {
-      background: var(--white);
-      border-radius: 16px;
-      max-width: 700px;
-      width: 90%;
-      overflow: hidden;
-    }
-
-    .modal img {
-      width: 100%;
-      height: 320px;
-      object-fit: contain;
-      background: #000;
-    }
-
-    .modal-content {
-      padding: 20px;
-    }
-
-    .modal-content h2 {
-      margin-top: 0;
-    }
-
-    .modal-footer {
-      padding: 16px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-
-    .btn {
-      padding: 10px 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: var(--white);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--primary);
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--dark);
-      color: var(--white);
-      padding: 40px;
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    footer p {
-      margin: 6px 0;
-      color: #CCCCCC;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
   <nav>
     <div class="logo">RécupèreMoi</div>
     <ul>
@@ -295,13 +152,11 @@
     </ul>
   </nav>
 
-  <!-- HEADER -->
   <div class="header-section">
     <h1>Les dons disponibles</h1>
     <p>Découvrez les objets donnés près de chez vous.</p>
   </div>
 
-  <!-- FILTERS -->
   <div class="filters">
     <button class="chip active" data-type="all">Tous</button>
     <button class="chip" data-type="meuble">Meubles</button>
@@ -320,244 +175,384 @@
       <option value="all">Tous les états</option>
     </select>
   </div>
-
   <!-- GRID -->
-  <div id="donations"></div>
+  <div id="donations" style="
+    padding: 20px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  "></div>
 
   <!-- PAGINATION -->
-  <div class="pagination">
+  <div class="pagination" style="display:flex; justify-content:center; gap:12px; padding:30px;">
     <button id="prevPage">&lt;</button>
     <span id="pageInfo">Page 1</span>
     <button id="nextPage">&gt;</button>
   </div>
 
   <!-- MODAL -->
-  <div class="modal-backdrop" id="modalBackdrop">
-    <div class="modal">
-      <img id="modalImage" src="">
-      <div class="modal-content" id="modalDetails"></div>
-      <div class="modal-footer">
-        <button class="btn btn-ghost" id="modalClose">Fermer</button>
-        <button class="btn btn-primary" id="modalContact">Contacter</button>
+  <div class="modal-backdrop" id="modalBackdrop" style="
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  ">
+    <div class="modal" style="
+      background: var(--white);
+      border-radius: 16px;
+      max-width: 700px;
+      width: 90%;
+      overflow: hidden;
+    ">
+      <img id="modalImage" src="" style="
+        width: 100%;
+        height: 320px;
+        object-fit: contain;
+        background: #000;
+      ">
+      <div class="modal-content" id="modalDetails" style="padding: 20px;"></div>
+      <div class="modal-footer" style="
+        padding: 16px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+      ">
+        <button class="btn btn-ghost" id="modalClose" style="
+          padding: 10px 16px;
+          border-radius: 8px;
+          border: none;
+          background: transparent;
+          color: var(--primary);
+          cursor: pointer;
+          font-size: 14px;
+        ">Fermer</button>
+
+        <button class="btn btn-primary" id="modalContact" style="
+          padding: 10px 16px;
+          border-radius: 8px;
+          border: none;
+          background: var(--primary);
+          color: var(--white);
+          cursor: pointer;
+          font-size: 14px;
+        ">Contacter</button>
       </div>
     </div>
   </div>
 
-  <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
+  <!-- FOOTER -->
+  <footer style="
+    background: var(--dark);
+    color: var(--white);
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
+  ">
+    <p style="margin: 6px 0; color: #CCCCCC;">RécupèreMoi — Plateforme de dons gratuits</p>
+    <p style="margin: 6px 0; color: #CCCCCC;">© 2026 — Tous droits réservés</p>
+  </footer>
+<script>
+  const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
 
-    let all = [];
-    let filtered = [];
-    let currentType = "all";
-    let currentCity = "all";
-    let currentState = "all";
-    let currentPage = 1;
-    const pageSize = 8;
+  let all = [];
+  let filtered = [];
+  let currentType = "all";
+  let currentCity = "all";
+  let currentPostal = null;
+  let currentState = "all";
+  let currentPage = 1;
+  const pageSize = 8;
 
-    let photos = [];
-    let photoIndex = 0;
-    let contactInfo = "";
+  let photos = [];
+  let contactInfo = "";
 
-    function distanceKm(lat1, lon1, lat2, lon2) {
-      const R = 6371;
-      const dLat = (lat2 - lat1) * Math.PI / 180;
-      const dLon = (lon2 - lon1) * Math.PI / 180;
-      const a =
-        Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
-        Math.sin(dLon/2) * Math.sin(dLon/2);
-      return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
-    }
+  /* ------------------------------
+      DISTANCE (Haversine)
+  ------------------------------ */
+  function distanceKm(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+      Math.sin(dLon/2) * Math.sin(dLon/2);
+    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+  }
 
-    async function getCoordsFromPostal(postal) {
-      const url = `https://geo.api.gouv.fr/communes?codePostal=${encodeURIComponent(postal)}&fields=centre&limit=1`;
-      const res = await fetch(url);
-      const data = await res.json();
-      if (!data.length || !data[0].centre) return null;
-      return {
-        lat: data[0].centre.coordinates[1],
-        lon: data[0].centre.coordinates[0]
-      };
-    }
+  /* ------------------------------
+      COORDS FROM POSTAL
+  ------------------------------ */
+  async function getCoordsFromPostal(postal) {
+    const url = `https://geo.api.gouv.fr/communes?codePostal=${encodeURIComponent(postal)}&fields=centre&limit=1`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data.length || !data[0].centre) return null;
+    return {
+      lat: data[0].centre.coordinates[1],
+      lon: data[0].centre.coordinates[0]
+    };
+  }
 
-    function normalize(item) {
-      return {
-        type: item["Type d’objet"] || "",
-        state: item["État de l’objet"] || "",
-        city: String(item["Ville / Code postal"] || "").trim(),
-        photos: item["Photo de l’objet (upload)"]
-          ? item["Photo de l’objet (upload)"].split(",").map(p => p.trim())
-          : [],
-        contact: item["Email ou téléphone"] || "",
-        submitted: item["Submitted at"] || ""
-      };
-    }
+  /* ------------------------------
+      NORMALISATION DES DONNÉES
+  ------------------------------ */
+  function normalize(item) {
+    return {
+      type: item["Type d’objet"] || "",
+      state: item["État de l’objet"] || "",
+      city: String(item["Ville / Code postal"] || "").trim(),
+      photos: item["Photo de l’objet (upload)"]
+        ? item["Photo de l’objet (upload)"].split(",").map(p => p.trim())
+        : [],
+      contact: item["Email ou téléphone"] || "",
+      submitted: item["Submitted at"] || ""
+    };
+  }
 
-    fetch(API_URL)
-      .then(r => r.json())
-      .then(data => {
-        all = data.map(normalize)
-                 .sort((a,b) => new Date(b.submitted) - new Date(a.submitted));
+  /* ------------------------------
+      CHARGEMENT DES DONNÉES
+  ------------------------------ */
+  fetch(API_URL)
+    .then(r => r.json())
+    .then(data => {
+      all = data.map(normalize)
+               .sort((a,b) => new Date(b.submitted) - new Date(a.submitted));
 
-        buildStateFilter();
-        applyFilters();
+      buildStateFilter();
+      applyFilters();
+    });
+
+  /* ------------------------------
+      FILTRE ÉTAT
+  ------------------------------ */
+  function buildStateFilter() {
+    const states = new Set();
+    all.forEach(d => { if (d.state) states.add(d.state); });
+
+    [...states].sort().forEach(s => {
+      filterState.innerHTML += `<option value="${s}">${s}</option>`;
+    });
+  }
+
+  /* ------------------------------
+      APPLICATION DES FILTRES
+  ------------------------------ */
+  function applyFilters() {
+    filtered = all.filter(d => {
+
+      /* TYPE */
+      if (currentType !== "all" && !d.type.toLowerCase().includes(currentType)) {
+        return false;
+      }
+
+      /* VILLE / CODE POSTAL */
+      if (currentCity !== "all") {
+        const cityLower = d.city.toLowerCase();
+
+        if (
+          !cityLower.includes(currentCity) &&
+          !(currentPostal && cityLower.includes(currentPostal))
+        ) {
+          return false;
+        }
+      }
+
+      /* ÉTAT */
+      if (currentState !== "all" && d.state !== currentState) {
+        return false;
+      }
+
+      return true;
+    });
+
+    currentPage = 1;
+    render();
+    updatePagination();
+  }
+
+  /* ------------------------------
+      AFFICHAGE DES CARTES
+  ------------------------------ */
+  function render() {
+    const container = document.getElementById("donations");
+    container.innerHTML = "";
+
+    const start = (currentPage - 1) * pageSize;
+    const pageItems = filtered.slice(start, start + pageSize);
+
+    pageItems.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const photo = item.photos[0] || "https://via.placeholder.com/300x200?text=Pas+de+photo";
+
+      card.innerHTML = `
+        <img src="${photo}">
+        <div class="card-body">
+          <h3>${item.type}</h3>
+          <p>${item.city} • ${item.state}</p>
+          <p style="font-size:12px;color:#999;">Ajouté le ${new Date(item.submitted).toLocaleDateString("fr-FR")}</p>
+        </div>
+      `;
+
+      card.onclick = () => openModal(item);
+
+      container.appendChild(card);
+    });
+  }
+
+  /* ------------------------------
+      PAGINATION
+  ------------------------------ */
+  function updatePagination() {
+    const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+    pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
+    prevPage.disabled = currentPage === 1;
+    nextPage.disabled = currentPage === totalPages;
+  }
+
+  prevPage.onclick = () => { currentPage--; render(); updatePagination(); };
+  nextPage.onclick = () => { currentPage++; render(); updatePagination(); };
+
+  /* ------------------------------
+      FILTRE TYPE
+  ------------------------------ */
+  document.querySelectorAll(".chip").forEach(btn => {
+    if (btn.id === "nearMe") return;
+
+    btn.onclick = () => {
+      document.querySelectorAll(".chip").forEach(b => {
+        if (b.id !== "nearMe") b.classList.remove("active");
       });
 
-    function buildStateFilter() {
-      const states = new Set();
-      all.forEach(d => { if (d.state) states.add(d.state); });
+      btn.classList.add("active");
+      currentType = btn.dataset.type;
+      applyFilters();
+    };
+  });
 
-      [...states].sort().forEach(s => {
-        filterState.innerHTML += `<option value="${s}">${s}</option>`;
-      });
+  /* ------------------------------
+      FILTRE ÉTAT
+  ------------------------------ */
+  filterState.onchange = () => {
+    currentState = filterState.value;
+    applyFilters();
+  };
+
+  /* ------------------------------
+      AUTO-COMPLÉTION VILLES
+  ------------------------------ */
+  async function searchCommunes(query) {
+    const url = `https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(query)}&fields=nom,codesPostaux&limit=10`;
+    const response = await fetch(url);
+    return await response.json();
+  }
+
+  const cityInput = document.getElementById("citySearch");
+  const suggestions = document.getElementById("citySuggestions");
+
+  cityInput.addEventListener("input", async () => {
+    const q = cityInput.value.toLowerCase().trim();
+    if (!q) {
+      suggestions.style.display = "none";
+      currentCity = "all";
+      currentPostal = null;
+      applyFilters();
+      return;
     }
 
-    function applyFilters() {
-      filtered = all.filter(d => {
-        if (currentType !== "all" && !d.type.toLowerCase().includes(currentType)) return false;
-        if (currentCity !== "all" && !d.city.toLowerCase().includes(currentCity.toLowerCase())) return false;
-        if (currentState !== "all" && d.state !== currentState) return false;
-        return true;
-      });
+    const results = await searchCommunes(q);
 
+    suggestions.innerHTML = results
+      .map(c => `<div data-city="${c.nom}" data-postal="${c.codesPostaux[0]}">${c.nom} (${c.codesPostaux[0]})</div>`)
+      .join("");
+
+    suggestions.style.display = results.length ? "block" : "none";
+  });
+
+  /* ------------------------------
+      SÉLECTION D’UNE VILLE
+  ------------------------------ */
+  suggestions.addEventListener("click", (e) => {
+    if (e.target.dataset.city) {
+      const selectedCity = e.target.dataset.city.toLowerCase();
+      const selectedPostal = e.target.dataset.postal;
+
+      cityInput.value = e.target.dataset.city;
+
+      currentCity = selectedCity;
+      currentPostal = selectedPostal;
+
+      suggestions.style.display = "none";
+      applyFilters();
+    }
+  });
+
+  /* ------------------------------
+      AUTOUR DE MOI
+  ------------------------------ */
+  document.getElementById("nearMe").addEventListener("click", () => {
+    if (!navigator.geolocation) {
+      alert("La géolocalisation n'est pas supportée par votre navigateur.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      const userLat = pos.coords.latitude;
+      const userLon = pos.coords.longitude;
+      const radius = 20; // km
+
+      const results = [];
+
+      for (const item of all) {
+        const postal = item.city;
+        if (!postal) continue;
+
+        const coords = await getCoordsFromPostal(postal);
+        if (!coords) continue;
+
+        const d = distanceKm(userLat, userLon, coords.lat, coords.lon);
+        if (d <= radius) {
+          results.push(item);
+        }
+      }
+
+      filtered = results;
       currentPage = 1;
       render();
       updatePagination();
-    }
-
-    function render() {
-      const container = document.getElementById("donations");
-      container.innerHTML = "";
-
-      const start = (currentPage - 1) * pageSize;
-      const pageItems = filtered.slice(start, start + pageSize);
-
-      pageItems.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "card";
-
-        const photo = item.photos[0] || "https://via.placeholder.com/300x200?text=Pas+de+photo";
-
-        card.innerHTML = `
-          <img src="${photo}">
-          <div class="card-body">
-            <h3>${item.type}</h3>
-            <p>${item.city} • ${item.state}</p>
-            <p style="font-size:12px;color:#999;">Ajouté le ${new Date(item.submitted).toLocaleDateString("fr-FR")}</p>
-          </div>
-        `;
-
-        card.onclick = () => openModal(item);
-
-        container.appendChild(card);
-      });
-    }
-
-    function updatePagination() {
-      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
-      pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
-      prevPage.disabled = currentPage === 1;
-      nextPage.disabled = currentPage === totalPages;
-    }
-
-    prevPage.onclick = () => { currentPage--; render(); updatePagination(); };
-    nextPage.onclick = () => { currentPage++; render(); updatePagination(); };
-
-    document.querySelectorAll(".chip").forEach(btn => {
-      if (btn.id === "nearMe") return;
-      btn.onclick = () => {
-        document.querySelectorAll(".chip").forEach(b => {
-          if (b.id !== "nearMe") b.classList.remove("active");
-        });
-        btn.classList.add("active");
-        currentType = btn.dataset.type;
-        applyFilters();
-      };
+    }, () => {
+      alert("Impossible d'obtenir votre position.");
     });
+  });
 
-    filterState.onchange = () => { currentState = filterState.value; applyFilters(); };
+  /* ------------------------------
+      MODAL
+  ------------------------------ */
+  function openModal(item) {
+    photos = item.photos.length ? item.photos : ["https://via.placeholder.com/600x400?text=Pas+de+photo"];
+    contactInfo = item.contact;
 
-    async function searchCommunes(query) {
-      const url = `https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(query)}&fields=nom,codesPostaux&limit=10`;
-      const response = await fetch(url);
-      return await response.json();
-    }
+    modalImage.src = photos[0];
 
-    const cityInput = document.getElementById("citySearch");
-    const suggestions = document.getElementById("citySuggestions");
+    modalDetails.innerHTML = `
+      <h2>${item.type}</h2>
+      <p><strong>État :</strong> ${item.state}</p>
+      <p><strong>Ville :</strong> ${item.city}</p>
+      <p><strong>Ajouté le :</strong> ${new Date(item.submitted).toLocaleDateString("fr-FR")}</p>
+      <p><strong>Contact :</strong> ${item.contact}</p>
+    `;
 
-    cityInput.addEventListener("input", async () => {
-      const q = cityInput.value.toLowerCase().trim();
-      if (!q) {
-        suggestions.style.display = "none";
-        currentCity = "all";
-        applyFilters();
-        return;
-      }
+    modalBackdrop.style.display = "flex";
+  }
 
-      const results = await searchCommunes(q);
-
-      suggestions.innerHTML = results
-        .map(c => `<div data-city="${c.nom}" data-postal="${c.codesPostaux[0]}">${c.nom} (${c.codesPostaux[0]})</div>`)
-        .join("");
-
-      suggestions.style.display = results.length ? "block" : "none";
-    });
-
-    suggestions.addEventListener("click", (e) => {
-      if (e.target.dataset.city) {
-        cityInput.value = e.target.dataset.city;
-        currentCity = e.target.dataset.postal || e.target.dataset.city;
-        suggestions.style.display = "none";
-        applyFilters();
-      }
-    });
-
-    document.getElementById("nearMe").addEventListener("click", () => {
-      if (!navigator.geolocation) {
-        alert("La géolocalisation n'est pas supportée par votre navigateur.");
-        return;
-      }
-
-      navigator.geolocation.getCurrentPosition(async (pos) => {
-        const userLat = pos.coords.latitude;
-        const userLon = pos.coords.longitude;
-        const radius = 20; // km
-
-        const results = [];
-
-        for (const item of all) {
-          const postal = item.city;
-          if (!postal) continue;
-
-          const coords = await getCoordsFromPostal(postal);
-          if (!coords) continue;
-
-          const d = distanceKm(userLat, userLon, coords.lat, coords.lon);
-          if (d <= radius) {
-            results.push(item);
-          }
-        }
-
-        filtered = results;
-        currentPage = 1;
-        render();
-        updatePagination();
-      }, () => {
-        alert("Impossible d'obtenir votre position.");
-      });
-    });
-
-    function openModal(item) {
-      photos = item.photos.length ? item.photos : ["https://via.placeholder.com/600x400?text=Pas+de+photo"];
-      photoIndex = 0;
-      contactInfo = item.contact;
-
-      modalImage.src = photos[0];
-
-      modalDetails.innerHTML = `
-        <h2>${item.type}</h2>
-        <p><strong>État :</strong> ${item.state}</p>
-        <p><strong>Ville :</strong> ${item.city}</p>
-        <p><strong>Ajouté le :</strong> ${new Date(item.submitted).toLocaleDateString("fr-FR")}</p>
-        <p><strong>Contact :</strong> ${item.contact}</p>
+  modalClose.onclick = () => modalBackdrop.style.display = "none";
+  modalContact.onclick = () => alert("Contact : " + contactInfo);
+  modalBackdrop.onclick = e => { if (e.target === modalBackdrop) modalBackdrop.style.display = "none"; };
+</script>
+</body>
+</html>
