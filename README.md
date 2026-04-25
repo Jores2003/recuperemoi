@@ -240,6 +240,24 @@
     </div>
   </section>
 
+  <!-- GALERIE -->
+  <section>
+    <h2>Notre communauté en images</h2>
+
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: auto;
+    ">
+      <img src="IMG1.jpg" alt="Illustration 1" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+      <img src="IMG2.jpg" alt="Illustration 2" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+      <img src="IMG3.jpg" alt="Illustration 3" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+      <img src="IMG4.jpg" alt="Illustration 4" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <p>RécupèreMoi — Plateforme de dons gratuits</p>
