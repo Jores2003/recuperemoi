@@ -149,6 +149,9 @@
       <li><a href="dons.html">Voir les dons</a></li>
       <li><a href="apropos.html">À propos</a></li>
       <li><a href="contact.html">Contact</a></li>
+
+      <!-- BOUTON DÉCONNEXION -->
+      <li><a href="#" id="logoutBtn" style="display:none;">Déconnexion</a></li>
     </ul>
   </nav>
 
@@ -175,6 +178,7 @@
       <option value="all">Tous les états</option>
     </select>
   </div>
+
   <!-- GRID -->
   <div id="donations" style="
     padding: 20px 40px;
@@ -254,6 +258,7 @@
     <p style="margin: 6px 0; color: #CCCCCC;">RécupèreMoi — Plateforme de dons gratuits</p>
     <p style="margin: 6px 0; color: #CCCCCC;">© 2026 — Tous droits réservés</p>
   </footer>
+
 <script>
   const API_URL = "https://script.google.com/macros/s/AKfycbz3_MLXMxqpEnmYQExnE9dizJYx15eBseREFSldQW2LAg5ostMvmqh1_gncntfMx1c1bw/exec";
 
@@ -269,9 +274,6 @@
   let photos = [];
   let contactInfo = "";
 
-  /* ------------------------------
-      DISTANCE (Haversine)
-  ------------------------------ */
   function distanceKm(lat1, lon1, lat2, lon2) {
     const R = 6371;
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -283,9 +285,6 @@
     return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
   }
 
-  /* ------------------------------
-      COORDS FROM POSTAL
-  ------------------------------ */
   async function getCoordsFromPostal(postal) {
     const url = `https://geo.api.gouv.fr/communes?codePostal=${encodeURIComponent(postal)}&fields=centre&limit=1`;
     const res = await fetch(url);
@@ -297,9 +296,6 @@
     };
   }
 
-  /* ------------------------------
-      NORMALISATION DES DONNÉES
-  ------------------------------ */
   function normalize(item) {
     return {
       type: item["Type d’objet"] || "",
@@ -313,9 +309,6 @@
     };
   }
 
-  /* ------------------------------
-      CHARGEMENT DES DONNÉES
-  ------------------------------ */
   fetch(API_URL)
     .then(r => r.json())
     .then(data => {
@@ -326,9 +319,6 @@
       applyFilters();
     });
 
-  /* ------------------------------
-      FILTRE ÉTAT
-  ------------------------------ */
   function buildStateFilter() {
     const states = new Set();
     all.forEach(d => { if (d.state) states.add(d.state); });
@@ -338,18 +328,13 @@
     });
   }
 
-  /* ------------------------------
-      APPLICATION DES FILTRES
-  ------------------------------ */
   function applyFilters() {
     filtered = all.filter(d => {
 
-      /* TYPE */
       if (currentType !== "all" && !d.type.toLowerCase().includes(currentType)) {
         return false;
       }
 
-      /* VILLE / CODE POSTAL */
       if (currentCity !== "all") {
         const cityLower = d.city.toLowerCase();
 
@@ -361,7 +346,6 @@
         }
       }
 
-      /* ÉTAT */
       if (currentState !== "all" && d.state !== currentState) {
         return false;
       }
@@ -374,9 +358,6 @@
     updatePagination();
   }
 
-  /* ------------------------------
-      AFFICHAGE DES CARTES
-  ------------------------------ */
   function render() {
     const container = document.getElementById("donations");
     container.innerHTML = "";
@@ -405,9 +386,6 @@
     });
   }
 
-  /* ------------------------------
-      PAGINATION
-  ------------------------------ */
   function updatePagination() {
     const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
     pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
@@ -418,9 +396,6 @@
   prevPage.onclick = () => { currentPage--; render(); updatePagination(); };
   nextPage.onclick = () => { currentPage++; render(); updatePagination(); };
 
-  /* ------------------------------
-      FILTRE TYPE
-  ------------------------------ */
   document.querySelectorAll(".chip").forEach(btn => {
     if (btn.id === "nearMe") return;
 
@@ -435,17 +410,11 @@
     };
   });
 
-  /* ------------------------------
-      FILTRE ÉTAT
-  ------------------------------ */
   filterState.onchange = () => {
     currentState = filterState.value;
     applyFilters();
   };
 
-  /* ------------------------------
-      AUTO-COMPLÉTION VILLES
-  ------------------------------ */
   async function searchCommunes(query) {
     const url = `https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(query)}&fields=nom,codesPostaux&limit=10`;
     const response = await fetch(url);
@@ -474,9 +443,6 @@
     suggestions.style.display = results.length ? "block" : "none";
   });
 
-  /* ------------------------------
-      SÉLECTION D’UNE VILLE
-  ------------------------------ */
   suggestions.addEventListener("click", (e) => {
     if (e.target.dataset.city) {
       const selectedCity = e.target.dataset.city.toLowerCase();
@@ -492,9 +458,6 @@
     }
   });
 
-  /* ------------------------------
-      AUTOUR DE MOI
-  ------------------------------ */
   document.getElementById("nearMe").addEventListener("click", () => {
     if (!navigator.geolocation) {
       alert("La géolocalisation n'est pas supportée par votre navigateur.");
@@ -504,7 +467,7 @@
     navigator.geolocation.getCurrentPosition(async (pos) => {
       const userLat = pos.coords.latitude;
       const userLon = pos.coords.longitude;
-      const radius = 20; // km
+      const radius = 20;
 
       const results = [];
 
@@ -530,9 +493,6 @@
     });
   });
 
-  /* ------------------------------
-      MODAL
-  ------------------------------ */
   function openModal(item) {
     photos = item.photos.length ? item.photos : ["https://via.placeholder.com/600x400?text=Pas+de+photo"];
     contactInfo = item.contact;
@@ -554,5 +514,15 @@
   modalContact.onclick = () => alert("Contact : " + contactInfo);
   modalBackdrop.onclick = e => { if (e.target === modalBackdrop) modalBackdrop.style.display = "none"; };
 </script>
-</body>
-</html>
+
+<!-- Firebase -->
+<script type="module" src="firebase.js"></script>
+
+<!-- Détection + Déconnexion -->
+<script type="module">
+  import { auth } from "./firebase.js";
+  import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  onAuthStateChanged(auth, (user) => {
