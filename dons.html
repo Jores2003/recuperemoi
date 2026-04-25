@@ -526,3 +526,20 @@
   const logoutBtn = document.getElementById("logoutBtn");
 
   onAuthStateChanged(auth, (user) => {
+          logoutBtn.style.display = "block";
+    } else {
+      logoutBtn.style.display = "none";
+    }
+  });
+
+  // Déconnexion
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    alert("Vous êtes déconnecté.");
+    window.location.href = "index.html";
+  });
+</script>
+
+</body>
+</html>
+
