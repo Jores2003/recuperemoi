@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos – RécupèreMoi</title>
+  <title>Contact – RécupèreMoi</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -79,46 +79,55 @@
       font-size: 18px;
     }
 
-    /* CONTENT */
-    .content {
+    /* CONTACT CONTAINER */
+    .contact-container {
       max-width: 900px;
       margin: auto;
       background: var(--white);
       padding: 40px;
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      line-height: 1.7;
+    }
+
+    .contact-info {
+      margin-bottom: 30px;
       font-size: 16px;
+      color: var(--gray);
     }
 
-    h2 {
-      font-size: 26px;
-      margin-top: 40px;
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    .stats {
+    /* FORM */
+    form {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
-      margin-top: 30px;
     }
 
-    .stat-card {
-      background: var(--light);
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 18px;
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
     }
 
-    .stat-card span {
-      display: block;
-      font-size: 32px;
-      color: var(--primary);
-      margin-bottom: 6px;
+    textarea {
+      height: 160px;
+      resize: none;
+    }
+
+    button {
+      background: var(--primary);
+      color: var(--white);
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    button:hover {
+      background: #256628;
     }
 
     /* FOOTER */
@@ -153,74 +162,24 @@
 
   <!-- HEADER -->
   <div class="header-section">
-    <h1>À propos de RécupèreMoi</h1>
-    <p>Une plateforme simple, gratuite et solidaire pour donner une seconde vie aux objets.</p>
+    <h1>Contactez-nous</h1>
+    <p>Une question ? Une suggestion ? Nous sommes là pour vous aider.</p>
   </div>
 
-  <!-- CONTENT -->
-  <div class="content">
+  <!-- CONTACT FORM -->
+  <div class="contact-container">
 
-    <h2>Notre mission</h2>
-    <p>
-      RécupèreMoi est une plateforme créée pour faciliter le don d’objets entre particuliers, associations et structures solidaires.
-      Notre objectif est simple : réduire le gaspillage, encourager le réemploi et rendre le don accessible à tous.
-    </p>
-
-    <h2>Pourquoi RécupèreMoi ?</h2>
-    <p>
-      Chaque année, des millions d’objets encore utilisables sont jetés.  
-      En parallèle, de nombreuses personnes et associations manquent de ressources.
-      RécupèreMoi crée un pont entre ces deux réalités.
-    </p>
-
-    <ul>
-      <li>✔ Donner devient simple et rapide</li>
-      <li>✔ Récupérer est 100% gratuit</li>
-      <li>✔ Les associations peuvent trouver ce dont elles ont besoin</li>
-      <li>✔ Le réemploi devient un geste du quotidien</li>
-    </ul>
-
-    <h2>Notre impact</h2>
-    <p>
-      Grâce à une communauté engagée, chaque don contribue à :
-    </p>
-
-    <div class="stats">
-      <div class="stat-card">
-        <span>♻️</span>
-        Réduire les déchets
-      </div>
-      <div class="stat-card">
-        <span>🤝</span>
-        Aider les associations
-      </div>
-      <div class="stat-card">
-        <span>🌍</span>
-        Encourager l’économie circulaire
-      </div>
-      <div class="stat-card">
-        <span>💚</span>
-        Soutenir la solidarité locale
-      </div>
+    <div class="contact-info">
+      Vous pouvez nous écrire directement via ce formulaire.  
+      Nous vous répondrons dans les plus brefs délais.
     </div>
 
-    <h2>Une plateforme ouverte à tous</h2>
-    <p>
-      RécupèreMoi s’adresse à :
-    </p>
-
-    <ul>
-      <li>👨‍👩‍👧 Les particuliers qui souhaitent donner ou récupérer</li>
-      <li>🏢 Les associations et ressourceries</li>
-      <li>🏛 Les collectivités engagées dans la transition écologique</li>
-    </ul>
-
-    <h2>Notre vision</h2>
-    <p>
-      Nous croyons en un modèle simple :  
-      <strong>un objet inutilisé chez l’un peut devenir utile pour un autre.</strong>  
-      RécupèreMoi veut rendre ce geste naturel, accessible et bénéfique pour tous.
-    </p>
+    <form action="mailto:recuperemoi.contact@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="Nom" placeholder="Votre nom" required>
+      <input type="email" name="Email" placeholder="Votre email" required>
+      <textarea name="Message" placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer le message</button>
+    </form>
 
   </div>
 
