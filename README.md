@@ -253,6 +253,166 @@
     </div>
   </section>
 
+  <!-- NOTRE VISION -->
+  <section style="padding: 80px 40px; background: #F0F7F1;">
+    <h2 style="text-align:center; font-size:32px; margin-bottom:40px; font-weight:600;">
+      Notre vision : remettre le consommateur au cœur du réemploi
+    </h2>
+
+    <div style="max-width: 900px; margin:auto; font-size:17px; color:#333; line-height:1.7;">
+      <p>
+        Chaque année, des millions d’objets encore utilisables finissent dans la nature, sur les trottoirs ou en déchèterie. 
+        Pas parce que les gens sont “irresponsables”, mais parce qu’ils sont souvent 
+        <strong>à l’écart du système de gestion des déchets</strong>.
+      </p>
+
+      <p>
+        Aujourd’hui, lorsqu’un consommateur ne veut plus d’un meuble, d’un vêtement ou d’un appareil, il n’a 
+        <strong>aucune incitation</strong> à bien faire. Aucun avantage, aucune récompense, aucune solution simple. 
+        Résultat : dépôts sauvages, gaspillage, pollution.
+      </p>
+
+      <p>
+        RécupèreMoi veut changer cela.
+      </p>
+
+      <h3 style="margin-top:40px; font-size:24px; color:#2E7D32;">Un système où donner rapporte</h3>
+
+      <p>
+        Nous travaillons sur un futur système où chaque objet donné sur la plateforme permettra de gagner des 
+        <strong>éco‑coins</strong>. Ces coins pourront être convertis en avantages, en réductions, ou même en argent.
+      </p>
+
+      <p>
+        Ce financement proviendra des <strong>éco‑organismes</strong> dans le cadre de la Responsabilité Élargie du Producteur (REP), 
+        un dispositif qui oblige les fabricants à financer la fin de vie des produits.
+      </p>
+
+      <p>
+        Ainsi, au lieu de jeter, chaque consommateur deviendra un acteur du réemploi… et sera récompensé pour cela.
+      </p>
+
+      <h3 style="margin-top:40px; font-size:24px; color:#2E7D32;">Un impact réel sur la pollution</h3>
+
+      <p>
+        En donnant plutôt qu’en jetant, nous réduisons :
+      </p>
+
+      <ul style="margin-left:20px; line-height:1.7;">
+        <li>les dépôts sauvages</li>
+        <li>la production de nouveaux objets</li>
+        <li>la quantité de déchets à traiter</li>
+        <li>l’empreinte carbone liée à la fabrication</li>
+      </ul>
+
+      <p>
+        RécupèreMoi n’est pas seulement une plateforme de dons : c’est un outil pour 
+        <strong>transformer nos habitudes</strong> et construire une économie plus circulaire, plus locale et plus responsable.
+      </p>
+
+      <h3 style="margin-top:40px; font-size:24px; color:#2E7D32;">Une plateforme qui évolue avec vous</h3>
+
+      <p>
+        Dans les prochains mois, nous prévoyons d’intégrer :
+      </p>
+
+      <ul style="margin-left:20px; line-height:1.7;">
+        <li>la création de comptes utilisateurs</li>
+        <li>un tableau de bord des dons</li>
+        <li>un système de points et de récompenses</li>
+        <li>des partenariats avec les éco‑organismes</li>
+        <li>des collaborations avec les collectivités</li>
+      </ul>
+
+      <p>
+        Ensemble, nous pouvons réduire les déchets, encourager le réemploi et donner une seconde vie à des milliers d’objets.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCHÉMA GRAPHIQUE : CYCLE DU RÉEMPLOI -->
+  <section style="padding: 80px 40px; background: #FFFFFF;">
+    <h2 style="text-align:center; font-size:32px; margin-bottom:50px; font-weight:600;">
+      Le cycle du réemploi avec RécupèreMoi
+    </h2>
+
+    <div style="
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      text-align: center;
+    ">
+
+      <!-- CONSOMMATEUR -->
+      <div style="
+        background: #E8F5E9;
+        padding: 30px;
+        border-radius: 14px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      ">
+        <h3 style="color:#2E7D32; font-size:22px;">👤 Consommateur</h3>
+        <p style="color:#333; font-size:15px;">
+          Donne ses objets au lieu de les jeter.  
+          Gagne des <strong>éco‑coins</strong> pour chaque don.
+        </p>
+      </div>
+
+      <!-- RÉCUPÈREMOI -->
+      <div style="
+        background: #FFFFFF;
+        padding: 30px;
+        border-radius: 14px;
+        border: 2px solid #2E7D32;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      ">
+        <h3 style="color:#2E7D32; font-size:22px;">♻️ RécupèreMoi</h3>
+        <p style="color:#333; font-size:15px;">
+          Met en relation, valorise les dons,  
+          suit les objets et calcule l’impact.
+        </p>
+      </div>
+
+      <!-- ASSOCIATIONS -->
+      <div style="
+        background: #E8F5E9;
+        padding: 30px;
+        border-radius: 14px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      ">
+        <h3 style="color:#2E7D32; font-size:22px;">🏛️ Associations</h3>
+        <p style="color:#333; font-size:15px;">
+          Récupèrent les objets utiles  
+          et leur donnent une seconde vie.
+        </p>
+      </div>
+
+      <!-- ÉCO-ORGANISMES -->
+      <div style="
+        background: #FFFFFF;
+        padding: 30px;
+        border-radius: 14px;
+        border: 2px solid #2E7D32;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      ">
+        <h3 style="color:#2E7D32; font-size:22px;">🏭 Éco‑organismes</h3>
+        <p style="color:#333; font-size:15px;">
+          Financement via la REP.  
+          Soutiennent le réemploi et les éco‑coins.
+        </p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <p style="font-size:18px; color:#2E7D32; font-weight:600;">
+        ⬅️ Le consommateur donne • RécupèreMoi valorise • Les associations récupèrent •  
+        Les éco‑organismes financent ➡️
+      </p>
+    </div>
+  </section>
+
   <!-- GALERIE -->
   <section>
     <h2>Notre communauté en images</h2>
