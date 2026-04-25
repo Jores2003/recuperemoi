@@ -185,6 +185,9 @@
       <li><a href="dons.html">Voir les dons</a></li>
       <li><a href="apropos.html">À propos</a></li>
       <li><a href="contact.html">Contact</a></li>
+
+      <!-- BOUTON DÉCONNEXION -->
+      <li><a href="#" id="logoutBtn" style="display:none;">Déconnexion</a></li>
     </ul>
   </nav>
 
@@ -436,6 +439,33 @@
     <p>RécupèreMoi — Plateforme de dons gratuits</p>
     <p>© 2026 — Tous droits réservés</p>
   </footer>
+
+  <!-- Firebase -->
+  <script type="module" src="firebase.js"></script>
+
+  <!-- Script de déconnexion -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // Afficher le bouton uniquement si l'utilisateur est connecté
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        logoutBtn.style.display = "block";
+      } else {
+        logoutBtn.style.display = "none";
+      }
+    });
+
+    // Déconnexion
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      alert("Vous êtes déconnecté.");
+      window.location.href = "index.html";
+    });
+  </script>
 
 </body>
 </html>
