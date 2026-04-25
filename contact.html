@@ -2,157 +2,192 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Contact - RecupèreMoi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – RécupèreMoi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --primary: #2E7D32;
+      --primary-light: #A5D6A7;
+      --dark: #1E1E1E;
+      --gray: #6E6E6E;
+      --light: #F5F5F5;
+      --white: #FFFFFF;
+    }
+
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
       margin: 0;
       padding: 0;
-      background:#F3F7F4;
-      color:#1F2D1F;
     }
 
-    nav {
-      background:#276749;
-      padding:12px 0;
-      text-align:center;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
     }
 
-    nav a {
-      color:white;
-      text-decoration:none;
-      margin:0 18px;
-      font-weight:600;
-      font-size:1.05em;
-      transition:0.2s;
+    nav ul li a:hover {
+      color: var(--primary);
     }
 
-    nav a:hover {
-      color:#C6F6D5;
+    /* HEADER SECTION */
+    .header-section {
+      padding: 60px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, #E8F5E9, #FFFFFF);
+      margin-bottom: 40px;
     }
 
-    header {
-      background:#2F855A;
-      color:white;
-      padding:40px 20px;
-      text-align:center;
-      border-bottom: 6px solid #276749;
+    .header-section h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
     }
 
-    h1 {
-      margin:0;
-      font-size:2.2em;
-      font-weight:700;
+    .header-section p {
+      color: var(--gray);
+      font-size: 18px;
     }
 
-    .container {
-      max-width:900px;
-      margin:40px auto;
-      padding:0 20px;
+    /* CONTACT CONTAINER */
+    .contact-container {
+      max-width: 900px;
+      margin: auto;
+      background: var(--white);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
     }
 
-    .box {
-      background:white;
-      padding:25px;
-      border-radius:10px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.08);
-      border-left:6px solid #2F855A;
+    .contact-info {
+      margin-bottom: 30px;
+      font-size: 16px;
+      color: var(--gray);
     }
 
-    label {
-      font-weight:600;
-      display:block;
-      margin-top:15px;
+    /* FORM */
+    form {
+      display: grid;
+      gap: 20px;
     }
 
     input, textarea {
-      width:100%;
-      padding:12px;
-      margin-top:6px;
-      border-radius:6px;
-      border:1px solid #ccc;
-      font-size:1em;
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
     }
 
     textarea {
-      height:150px;
-      resize:vertical;
+      height: 160px;
+      resize: none;
     }
 
-    .btn {
-      margin-top:20px;
-      display:inline-block;
-      padding:12px 25px;
-      background:#2F855A;
-      color:white;
-      text-decoration:none;
-      border-radius:6px;
-      font-weight:bold;
-      font-size:1.1em;
-      transition:0.2s;
-      border:none;
-      cursor:pointer;
+    button {
+      background: var(--primary);
+      color: var(--white);
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 500;
     }
 
-    .btn:hover {
-      background:#276749;
+    button:hover {
+      background: #256628;
     }
 
+    /* FOOTER */
     footer {
-      text-align:center;
-      padding:25px;
-      margin-top:40px;
-      background:#E8EEE9;
-      border-top:4px solid #C6D5D0;
-      font-size:0.9em;
+      background: var(--dark);
+      color: var(--white);
+      padding: 40px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer p {
+      margin: 6px 0;
+      color: #CCCCCC;
     }
   </style>
 </head>
 
 <body>
 
-<!-- MENU -->
-<nav>
-  <a href="index.html">Accueil</a>
-  <a href="deposer.html">Déposer un objet</a>
-  <a href="dons.html">Voir les dons</a>
-  <a href="apropos.html">À propos</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">RécupèreMoi</div>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="deposer.html">Déposer un objet</a></li>
+      <li><a href="dons.html">Voir les dons</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-<header>
-  <h1>Contact</h1>
-  <p>Une question, une suggestion ou un partenariat ? Écrivez-nous.</p>
-</header>
+  <!-- HEADER -->
+  <div class="header-section">
+    <h1>Contactez-nous</h1>
+    <p>Une question ? Une suggestion ? Nous sommes là pour vous aider.</p>
+  </div>
 
-<div class="container">
-  <div class="box">
+  <!-- CONTACT FORM -->
+  <div class="contact-container">
 
-    <h2>📩 Formulaire de contact</h2>
-    <p>Remplissez ce formulaire et nous vous répondrons rapidement.</p>
+    <div class="contact-info">
+      Vous pouvez nous écrire directement via ce formulaire.  
+      Nous vous répondrons dans les plus brefs délais.
+    </div>
 
     <form action="mailto:recuperemoi.contact@gmail.com" method="POST" enctype="text/plain">
-      <label>Votre nom</label>
-      <input type="text" name="Nom" required>
-
-      <label>Votre email</label>
-      <input type="email" name="Email" required>
-
-      <label>Votre message</label>
-      <textarea name="Message" required></textarea>
-
-      <button type="submit" class="btn">Envoyer</button>
+      <input type="text" name="Nom" placeholder="Votre nom" required>
+      <input type="email" name="Email" placeholder="Votre email" required>
+      <textarea name="Message" placeholder="Votre message" required></textarea>
+      <button type="submit">Envoyer le message</button>
     </form>
 
   </div>
-</div>
 
-<footer>
-  <p>© 2026 RecupèreMoi – Plateforme de dons gratuits</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>RécupèreMoi — Plateforme de dons gratuits</p>
+    <p>© 2026 — Tous droits réservés</p>
+  </footer>
 
 </body>
 </html>
