@@ -145,6 +145,19 @@
       font-size: 15px;
     }
 
+    /* GALERIE — Effet hover */
+    .gallery-img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
     /* FOOTER */
     footer {
       background: var(--dark);
@@ -251,10 +264,10 @@
       max-width: 1100px;
       margin: auto;
     ">
-      <img src="IMG1.jpg" alt="Illustration 1" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
-      <img src="IMG2.jpg" alt="Illustration 2" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
-      <img src="IMG3.jpg" alt="Illustration 3" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
-      <img src="IMG4.jpg" alt="Illustration 4" style="width:100%; border-radius:14px; box-shadow:0 6px 20px rgba(0,0,0,0.06);">
+      <img src="IMG1.jpg" alt="Illustration 1" class="gallery-img">
+      <img src="IMG2.jpg" alt="Illustration 2" class="gallery-img">
+      <img src="IMG3.jpg" alt="Illustration 3" class="gallery-img">
+      <img src="IMG4.jpg" alt="Illustration 4" class="gallery-img">
     </div>
   </section>
 
