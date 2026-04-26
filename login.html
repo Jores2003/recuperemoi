@@ -116,8 +116,8 @@
   <nav>
     <div class="logo">RécupèreMoi</div>
     <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="signup.html">Créer un compte</a></li>
+      <li><a href="/recuperemoi/index.html">Accueil</a></li>
+      <li><a href="/recuperemoi/signup.html">Créer un compte</a></li>
     </ul>
   </nav>
 
@@ -130,7 +130,7 @@
     <button id="loginBtn">Se connecter</button>
 
     <div class="message">
-      Pas encore de compte ? <a href="signup.html">Créer un compte</a>
+      Pas encore de compte ? <a href="/recuperemoi/signup.html">Créer un compte</a>
     </div>
   </div>
 
@@ -153,7 +153,7 @@
         await signInWithEmailAndPassword(auth, email, password);
 
         alert("Connexion réussie !");
-        window.location.href = "index.html";
+        window.location.href = "/recuperemoi/index.html";
 
       } catch (error) {
         alert("Erreur : " + error.message);
