@@ -73,6 +73,18 @@
       font-weight: 600;
     }
 
+    .warning {
+      display:none;
+      padding:15px;
+      background:#ffdddd;
+      border:1px solid #ff8888;
+      color:#a10000;
+      border-radius:8px;
+      margin-bottom:20px;
+      font-weight:500;
+      text-align:center;
+    }
+
     .form-group {
       margin-bottom: 18px;
     }
@@ -138,6 +150,11 @@
 
   <div class="container">
     <h2>Déposer un objet</h2>
+
+    <!-- Message si non connecté -->
+    <div id="authWarning" class="warning">
+      Vous devez être connecté pour déposer un objet. Redirection en cours…
+    </div>
 
     <form id="donForm">
 
@@ -205,12 +222,16 @@
     const photosInput = document.getElementById("photos");
     const preview = document.getElementById("preview");
     const form = document.getElementById("donForm");
+    const warning = document.getElementById("authWarning");
 
     // Vérifier si l'utilisateur est connecté
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        alert("Vous devez être connecté pour déposer un objet.");
-        window.location.href = "/recuperemoi/login.html";
+        warning.style.display = "block";
+
+        setTimeout(() => {
+          window.location.href = "/recuperemoi/login.html";
+        }, 2000);
       }
     });
 
