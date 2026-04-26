@@ -28,13 +28,13 @@ import {
 
 
 // -----------------------------------------------------
-//  CONFIG FIREBASE
+//  CONFIG FIREBASE (VERSION EXACTE DE TA CONSOLE)
 // -----------------------------------------------------
 const firebaseConfig = {
   apiKey: "AIzaSyA6njGAi3K8Q6DI2GCHBXfQBVgb7DN0TH8",
   authDomain: "recuperemoi-4d374.firebaseapp.com",
   projectId: "recuperemoi-4d374",
-  storageBucket: "recuperemoi-4d374.appspot.com",
+  storageBucket: "recuperemoi-4d374.firebasestorage.app",
   messagingSenderId: "1042205176062",
   appId: "1:1042205176062:web:58f93a3e62c535fc6675af",
   measurementId: "G-KP9GSY5ZY8"
@@ -51,7 +51,7 @@ const storage = getStorage(app);
 
 
 // -----------------------------------------------------
-//  EXPORTS AUTH + FIRESTORE
+//  EXPORTS
 // -----------------------------------------------------
 export { 
   auth, 
@@ -65,7 +65,7 @@ export {
 
 
 // -----------------------------------------------------
-//  CATEGORIES + SOUS-CATEGORIES (VERSION FINALE)
+//  CATEGORIES + SOUS-CATEGORIES
 // -----------------------------------------------------
 export const subcategoriesMap = {
   deee: [
@@ -95,7 +95,7 @@ export const subcategoriesMap = {
 
 
 // -----------------------------------------------------
-//  FONCTION : Upload d'une photo dans Firebase Storage
+//  UPLOAD PHOTO
 // -----------------------------------------------------
 export async function uploadPhoto(file, userId) {
   const fileRef = ref(storage, `dons/${userId}/${Date.now()}_${file.name}`);
@@ -105,7 +105,7 @@ export async function uploadPhoto(file, userId) {
 
 
 // -----------------------------------------------------
-//  FONCTION : Enregistrer un don dans Firestore
+//  ENREGISTRER UN DON
 // -----------------------------------------------------
 export async function submitDon(data) {
   await addDoc(collection(db, "dons"), {
