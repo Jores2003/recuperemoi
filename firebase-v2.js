@@ -51,6 +51,18 @@ const storage = getStorage(app);
 
 
 // -----------------------------------------------------
+//  SOUS-CATÉGORIES
+// -----------------------------------------------------
+export const subcategoriesMap = {
+  deee: ["Téléphones", "Ordinateurs", "Électroménager", "Écrans", "Batteries"],
+  textiles: ["Vêtements", "Chaussures", "Linge de maison", "Sacs"],
+  meubles: ["Chaises", "Tables", "Canapés", "Armoires", "Lits"],
+  jouets: ["Jouets en bois", "Poupées", "Jeux de société", "Figurines", "Jeux vidéo"],
+  batiment: ["Portes", "Fenêtres", "Carrelage", "Peinture", "Outils"]
+};
+
+
+// -----------------------------------------------------
 //  EXPORTS
 // -----------------------------------------------------
 export {
