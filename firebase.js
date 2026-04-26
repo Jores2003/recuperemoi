@@ -3,27 +3,27 @@
 // -----------------------------------------------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 
-import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
+import {
+  getFirestore,
+  collection,
+  addDoc,
   serverTimestamp,
   doc,
   setDoc
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-import { 
-  getStorage, 
-  ref, 
-  uploadBytes, 
-  getDownloadURL 
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
 
@@ -53,44 +53,14 @@ const storage = getStorage(app);
 // -----------------------------------------------------
 //  EXPORTS
 // -----------------------------------------------------
-export { 
-  auth, 
-  db, 
-  createUserWithEmailAndPassword, 
+export {
+  auth,
+  db,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   doc,
   setDoc
-};
-
-
-// -----------------------------------------------------
-//  CATEGORIES + SOUS-CATEGORIES
-// -----------------------------------------------------
-export const subcategoriesMap = {
-  deee: [
-    "Appareils électriques",
-    "Appareils électroménagère"
-  ],
-  textiles: [
-    "Vêtements",
-    "Chaussures",
-    "Sacs"
-  ],
-  meubles: [
-    "Canapés",
-    "Lits",
-    "Autres"
-  ],
-  jouets: [
-    "Petits jouets",
-    "Grands jouets"
-  ],
-  batiment: [
-    "Portes",
-    "Fenêtres",
-    "Autres"
-  ]
 };
 
 
