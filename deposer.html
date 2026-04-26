@@ -1,143 +1,119 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Déposer un objet – RécupèreMoi</title>
+<section class="don-form">
+  <h2>Déposer un don</h2>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <form id="donForm">
 
-  <style>
-    :root {
-      --primary: #2E7D32;
-      --dark: #1E1E1E;
-      --gray: #6E6E6E;
-      --light: #F5F5F5;
-      --white: #FFFFFF;
-    }
+    <!-- Catégorie -->
+    <div class="form-group">
+      <label for="category">Catégorie</label>
+      <select id="category" required>
+        <option value="">Sélectionner...</option>
+        <option value="textile">Textile</option>
+        <option value="deee">DEEE</option>
+        <option value="mobilier">Mobilier</option>
+        <option value="jouets">Jouets</option>
+        <option value="divers">Divers</option>
+        <option value="culture">Culture</option>
+        <option value="puericulture">Puériculture</option>
+        <option value="sport">Sport</option>
+      </select>
+    </div>
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--light);
-      color: var(--dark);
-    }
+    <!-- Sous-catégorie -->
+    <div class="form-group">
+      <label for="subcategory">Sous‑catégorie</label>
+      <select id="subcategory" required>
+        <option value="">Sélectionner une catégorie d'abord</option>
+      </select>
+    </div>
 
-    /* NAVBAR */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 40px;
-      background: var(--white);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+    <!-- État -->
+    <div class="form-group">
+      <label for="state">État de l’objet</label>
+      <select id="state" required>
+        <option value="Bon">Bon</option>
+        <option value="Correct">Correct</option>
+        <option value="À réparer">À réparer</option>
+      </select>
+    </div>
 
-    nav .logo {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--primary);
-    }
+    <!-- Ville -->
+    <div class="form-group">
+      <label for="city">Ville / Code postal</label>
+      <input type="text" id="city" placeholder="Ex : 75015 Paris" required>
+    </div>
 
-    nav ul {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+    <!-- Photos -->
+    <div class="form-group">
+      <label for="photos">Photos</label>
+      <input type="file" id="photos" accept="image/*" multiple>
+      <div id="preview"></div>
+    </div>
 
-    nav ul li a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-    }
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" placeholder="Décrivez votre objet..."></textarea>
+    </div>
 
-    nav ul li a:hover {
-      color: var(--primary);
-    }
+    <button type="submit" class="btn-submit">Déposer le don</button>
+  </form>
+</section>
+.don-form {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
 
-    /* CONTENU */
-    .container {
-      max-width: 900px;
-      margin: 60px auto;
-      background: var(--white);
-      padding: 40px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-    }
+.don-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 600;
+}
 
-    h2 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
+.form-group {
+  margin-bottom: 20px;
+}
 
-    iframe {
-      width: 100%;
-      height: 900px;
-      border: none;
-      border-radius: 12px;
-    }
-  </style>
-</head>
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
 
-<body>
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">RécupèreMoi</div>
-    <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="deposer.html">Déposer un objet</a></li>
-      <li><a href="dons.html">Voir les dons</a></li>
-      <li><a href="apropos.html">À propos</a></li>
-      <li><a href="contact.html">Contact</a></li>
+#preview img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-top: 8px;
+}
 
-      <!-- BOUTON DÉCONNEXION -->
-      <li><a href="#" id="logoutBtn" style="display:none;">Déconnexion</a></li>
-    </ul>
-  </nav>
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-  <!-- CONTENU -->
-  <div class="container">
-    <h2>Déposer un objet</h2>
-
-    <!-- FORMULAIRE TALLY (ou autre) -->
-    <iframe src="https://tally.so/r/ODJrVY"></iframe>
-  </div>
-
-  <!-- Firebase -->
-  <script type="module" src="firebase.js"></script>
-
-  <!-- Protection + Déconnexion -->
-  <script type="module">
-    import { auth } from "./firebase.js";
-    import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    // Protection de la page : si pas connecté → redirection
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        alert("Vous devez être connecté pour déposer un objet.");
-        window.location.href = "login.html";
-      } else {
-        logoutBtn.style.display = "block";
-      }
-    });
-
-    // Déconnexion
-    logoutBtn.addEventListener("click", async () => {
-      await signOut(auth);
-      alert("Vous êtes déconnecté.");
-      window.location.href = "index.html";
-    });
-  </script>
-
-</body>
-</html>
+.btn-submit:hover {
+  background: #43a047;
+}
