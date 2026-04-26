@@ -130,9 +130,9 @@
   <nav>
     <div class="logo">RécupèreMoi</div>
     <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="dons.html">Voir les dons</a></li>
-      <li><a href="login.html">Connexion</a></li>
+      <li><a href="/recuperemoi/index.html">Accueil</a></li>
+      <li><a href="/recuperemoi/dons.html">Voir les dons</a></li>
+      <li><a href="/recuperemoi/login.html">Connexion</a></li>
     </ul>
   </nav>
 
@@ -196,10 +196,9 @@
       auth, 
       onAuthStateChanged, 
       uploadPhoto, 
-      submitDon 
-    } from "./firebase.js";
-
-    import { subcategoriesMap } from "./firebase-v2.js";
+      submitDon,
+      subcategoriesMap
+    } from "./firebase-v2.js";
 
     const categorySelect = document.getElementById("category");
     const subcategorySelect = document.getElementById("subcategory");
@@ -211,7 +210,7 @@
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         alert("Vous devez être connecté pour déposer un objet.");
-        window.location.href = "login.html";
+        window.location.href = "/recuperemoi/login.html";
       }
     });
 
