@@ -1,81 +1,290 @@
-// -----------------------------------------------------
-//  IMPORTS FIREBASE
-// -----------------------------------------------------
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Déposer un objet – RécupèreMoi</title>
 
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+  <style>
+    :root {
+      --primary: #2E7D32;
+      --primary-dark: #256628;
+      --bg: #F5F5F5;
+      --white: #FFFFFF;
+      --text: #1E1E1E;
+      --border: #DDDDDD;
+    }
 
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
 
-// -----------------------------------------------------
-//  CONFIG FIREBASE
-// -----------------------------------------------------
-const firebaseConfig = {
-  apiKey: "AIzaSyA6njGAi3K8Q6DI2GCHBXfQBVgb7DN0TH8",
-  authDomain: "recuperemoi-4d374.firebaseapp.com",
-  projectId: "recuperemoi-4d374",
-  storageBucket: "recuperemoi-4d374.firebasestorage.app",
-  messagingSenderId: "1042205176062",
-  appId: "1:1042205176062:web:58f93a3e62c535fc6675af",
-  measurementId: "G-KP9GSY5ZY8"
-};
+    nav .logo {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary);
+    }
 
+    nav ul {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-// -----------------------------------------------------
-//  INITIALISATION
-// -----------------------------------------------------
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
 
+    nav ul li a:hover {
+      color: var(--primary);
+    }
 
-// -----------------------------------------------------
-//  EXPORTS AUTH + FIRESTORE
-// -----------------------------------------------------
-export {
-  auth,
-  db,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged
-};
+    .container {
+      max-width: 640px;
+      margin: 40px auto;
+      padding: 30px;
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
 
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      font-weight: 600;
+    }
 
-// -----------------------------------------------------
-//  UPLOAD PHOTO
-// -----------------------------------------------------
-export async function uploadPhoto(file, userId) {
-  const fileRef = ref(storage, `dons/${userId}/${Date.now()}_${file.name}`);
-  await uploadBytes(fileRef, file);
-  return await getDownloadURL(fileRef);
-}
+    .form-group {
+      margin-bottom: 18px;
+    }
 
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
 
-// -----------------------------------------------------
-//  ENREGISTRER UN DON
-// -----------------------------------------------------
-export async function submitDon(data) {
-  await addDoc(collection(db, "dons"), {
-    ...data,
-    submitted: serverTimestamp()
-  });
-}
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #FAFAFA;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    #preview img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 8px;
+      border: 1px solid #E0E0E0;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: var(--primary-dark);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">RécupèreMoi</div>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="dons.html">Voir les dons</a></li>
+      <li><a href="login.html">Connexion</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Déposer un objet</h2>
+
+    <form id="donForm">
+
+      <div class="form-group">
+        <label for="category">Catégorie</label>
+        <select id="category" required>
+          <option value="">Sélectionner...</option>
+          <option value="deee">D3E</option>
+          <option value="textiles">Textiles</option>
+          <option value="meubles">Meubles</option>
+          <option value="jouets">Jouets</option>
+          <option value="batiment">Objets de bâtiment / construction</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="subcategory">Sous-catégorie</label>
+        <select id="subcategory" required>
+          <option value="">Sélectionner une catégorie d'abord</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="state">État de l’objet</label>
+        <select id="state" required>
+          <option value="Bon">Bon</option>
+          <option value="Correct">Correct</option>
+          <option value="À réparer">À réparer</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="city">Ville / Code postal</label>
+        <input type="text" id="city" placeholder="Ex : 75015 Paris" required>
+      </div>
+
+      <div class="form-group">
+        <label for="photos">Photos</label>
+        <input type="file" id="photos" accept="image/*" multiple>
+        <div id="preview"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Décrivez votre objet..."></textarea>
+      </div>
+
+      <button type="submit">Déposer le don</button>
+
+    </form>
+  </div>
+
+  <!-- Script -->
+  <script type="module">
+    import { 
+      auth, 
+      onAuthStateChanged, 
+      uploadPhoto, 
+      submitDon 
+    } from "./firebase.js";
+
+    import { subcategoriesMap } from "./firebase.js";
+
+    const categorySelect = document.getElementById("category");
+    const subcategorySelect = document.getElementById("subcategory");
+    const photosInput = document.getElementById("photos");
+    const preview = document.getElementById("preview");
+    const form = document.getElementById("donForm");
+
+    // Vérifier si l'utilisateur est connecté
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        alert("Vous devez être connecté pour déposer un objet.");
+        window.location.href = "login.html";
+      }
+    });
+
+    // Sous-catégories dynamiques
+    categorySelect.addEventListener("change", () => {
+      const value = categorySelect.value;
+      subcategorySelect.innerHTML = "<option value=''>Sélectionner...</option>";
+
+      if (subcategoriesMap[value]) {
+        subcategoriesMap[value].forEach(sub => {
+          const opt = document.createElement("option");
+          opt.value = sub;
+          opt.textContent = sub;
+          subcategorySelect.appendChild(opt);
+        });
+      }
+    });
+
+    // Preview photos
+    photosInput.addEventListener("change", () => {
+      preview.innerHTML = "";
+      const files = Array.from(photosInput.files || []);
+      files.forEach(file => {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        preview.appendChild(img);
+      });
+    });
+
+    // Soumission du formulaire
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const category = categorySelect.value;
+      const subcategory = subcategorySelect.value;
+      const state = document.getElementById("state").value;
+      const city = document.getElementById("city").value.trim();
+      const description = document.getElementById("description").value.trim();
+
+      if (!category || !subcategory || !state || !city) {
+        alert("Veuillez remplir tous les champs obligatoires.");
+        return;
+      }
+
+      const files = Array.from(photosInput.files || []);
+      const photoURLs = [];
+
+      for (const file of files) {
+        const url = await uploadPhoto(file, user.uid);
+        photoURLs.push(url);
+      }
+
+      const donData = {
+        userId: user.uid,
+        contact: user.email,
+        category,
+        subcategory,
+        state,
+        city,
+        description,
+        photos: photoURLs
+      };
+
+      await submitDon(donData);
+
+      alert("Don déposé avec succès !");
+      form.reset();
+      preview.innerHTML = "";
+    });
+  </script>
+
+</body>
+</html>
