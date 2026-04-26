@@ -6,14 +6,17 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/fireba
 import { 
   getAuth, 
   createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword 
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 import { 
   getFirestore, 
   collection, 
   addDoc, 
-  serverTimestamp 
+  serverTimestamp,
+  doc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 import { 
@@ -31,7 +34,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyA6njGAi3K8Q6DI2GCHBXfQBVgb7DN0TH8",
   authDomain: "recuperemoi-4d374.firebaseapp.com",
   projectId: "recuperemoi-4d374",
-  storageBucket: "recuperemoi-4d374.firebasestorage.app",
+  storageBucket: "recuperemoi-4d374.appspot.com",
   messagingSenderId: "1042205176062",
   appId: "1:1042205176062:web:58f93a3e62c535fc6675af",
   measurementId: "G-KP9GSY5ZY8"
@@ -50,45 +53,45 @@ const storage = getStorage(app);
 // -----------------------------------------------------
 //  EXPORTS AUTH + FIRESTORE
 // -----------------------------------------------------
-export { auth, db, createUserWithEmailAndPassword, signInWithEmailAndPassword };
-
-
-// -----------------------------------------------------
-//  CATEGORIES + SOUS-CATEGORIES
-// -----------------------------------------------------
-const subcategories = {
-  textile: ["vêtements", "chaussures", "sacs", "linge de maison"],
-  deee: ["petit électroménager", "gros électroménager", "informatique", "téléphones", "TV / audio", "consoles"],
-  mobilier: ["meuble", "literie", "chaise", "table", "rangement"],
-  jouets: ["jouets plastiques", "jouets électroniques", "peluches", "jeux de société"],
-  divers: ["décoration", "ustensiles", "accessoires divers", "petit matériel"],
-  culture: ["livres", "CD / DVD", "instruments de musique"],
-  puericulture: ["poussette", "siège auto", "lit bébé", "accessoires bébé"],
-  sport: ["équipement sportif", "vélo", "accessoires de sport"]
+export { 
+  auth, 
+  db, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  doc,
+  setDoc
 };
 
 
 // -----------------------------------------------------
-//  FONCTION : Remplir automatiquement les sous-catégories
+//  CATEGORIES + SOUS-CATEGORIES (VERSION FINALE)
 // -----------------------------------------------------
-export function setupCategorySelector() {
-  const categorySelect = document.getElementById("category");
-  const subcategorySelect = document.getElementById("subcategory");
-
-  categorySelect.addEventListener("change", () => {
-    const selected = categorySelect.value;
-    subcategorySelect.innerHTML = "<option value=''>Sélectionner...</option>";
-
-    if (subcategories[selected]) {
-      subcategories[selected].forEach(sub => {
-        const opt = document.createElement("option");
-        opt.value = sub;
-        opt.textContent = sub;
-        subcategorySelect.appendChild(opt);
-      });
-    }
-  });
-}
+export const subcategoriesMap = {
+  deee: [
+    "Appareils électriques",
+    "Appareils électroménagère"
+  ],
+  textiles: [
+    "Vêtements",
+    "Chaussures",
+    "Sacs"
+  ],
+  meubles: [
+    "Canapés",
+    "Lits",
+    "Autres"
+  ],
+  jouets: [
+    "Petits jouets",
+    "Grands jouets"
+  ],
+  batiment: [
+    "Portes",
+    "Fenêtres",
+    "Autres"
+  ]
+};
 
 
 // -----------------------------------------------------
