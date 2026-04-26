@@ -116,8 +116,8 @@
   <nav>
     <div class="logo">RécupèreMoi</div>
     <ul>
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="login.html">Connexion</a></li>
+      <li><a href="/recuperemoi/index.html">Accueil</a></li>
+      <li><a href="/recuperemoi/login.html">Connexion</a></li>
     </ul>
   </nav>
 
@@ -131,7 +131,7 @@
     <button id="signupBtn">Créer mon compte</button>
 
     <div class="message">
-      Déjà un compte ? <a href="login.html">Se connecter</a>
+      Déjà un compte ? <a href="/recuperemoi/login.html">Se connecter</a>
     </div>
   </div>
 
@@ -152,20 +152,18 @@
       }
 
       try {
-        // Création du compte Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Enregistrement du profil dans Firestore
         await setDoc(doc(db, "users", user.uid), {
-          name: name,
-          email: email,
+          name,
+          email,
           createdAt: new Date(),
           ecoCoins: 0
         });
 
         alert("Compte créé avec succès !");
-        window.location.href = "login.html";
+        window.location.href = "/recuperemoi/login.html";
 
       } catch (error) {
         alert("Erreur : " + error.message);
