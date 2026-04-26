@@ -135,13 +135,9 @@
     </div>
   </div>
 
-  <!-- Import Firebase -->
-  <script type="module" src="firebase.js"></script>
-
-  <!-- Script d'inscription -->
+  <!-- Import firebase.js (NOTHING ELSE) -->
   <script type="module">
-    import { auth, db } from "./firebase.js";
-    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+    import { auth, db, createUserWithEmailAndPassword } from "./firebase.js";
     import { doc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
     const btn = document.getElementById("signupBtn");
