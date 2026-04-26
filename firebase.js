@@ -1,7 +1,32 @@
+// -----------------------------------------------------
+//  IMPORTS FIREBASE
+// -----------------------------------------------------
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+import { 
+  getStorage, 
+  ref, 
+  uploadBytes, 
+  getDownloadURL 
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
+
+
+// -----------------------------------------------------
+//  CONFIG FIREBASE
+// -----------------------------------------------------
 const firebaseConfig = {
   apiKey: "AIzaSyA6njGAi3K8Q6DI2GCHBXfQBVgb7DN0TH8",
   authDomain: "recuperemoi-4d374.firebaseapp.com",
@@ -12,14 +37,25 @@ const firebaseConfig = {
   measurementId: "G-KP9GSY5ZY8"
 };
 
+
+// -----------------------------------------------------
+//  INITIALISATION
+// -----------------------------------------------------
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
-export { auth, db };
-// -----------------------------
+
+// -----------------------------------------------------
+//  EXPORTS AUTH + FIRESTORE
+// -----------------------------------------------------
+export { auth, db, createUserWithEmailAndPassword, signInWithEmailAndPassword };
+
+
+// -----------------------------------------------------
 //  CATEGORIES + SOUS-CATEGORIES
-// -----------------------------
+// -----------------------------------------------------
 const subcategories = {
   textile: ["vêtements", "chaussures", "sacs", "linge de maison"],
   deee: ["petit électroménager", "gros électroménager", "informatique", "téléphones", "TV / audio", "consoles"],
@@ -31,7 +67,10 @@ const subcategories = {
   sport: ["équipement sportif", "vélo", "accessoires de sport"]
 };
 
-// Remplir automatiquement les sous-catégories
+
+// -----------------------------------------------------
+//  FONCTION : Remplir automatiquement les sous-catégories
+// -----------------------------------------------------
 export function setupCategorySelector() {
   const categorySelect = document.getElementById("category");
   const subcategorySelect = document.getElementById("subcategory");
@@ -50,22 +89,21 @@ export function setupCategorySelector() {
     }
   });
 }
-import { getStorage, ref, uploadBytes, getDownloadURL } 
-from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
-const storage = getStorage(app);
 
-// Upload d'une photo
-async function uploadPhoto(file, userId) {
+// -----------------------------------------------------
+//  FONCTION : Upload d'une photo dans Firebase Storage
+// -----------------------------------------------------
+export async function uploadPhoto(file, userId) {
   const fileRef = ref(storage, `dons/${userId}/${Date.now()}_${file.name}`);
   await uploadBytes(fileRef, file);
   return await getDownloadURL(fileRef);
 }
 
-export { uploadPhoto };
-import { collection, addDoc, serverTimestamp } 
-from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+// -----------------------------------------------------
+//  FONCTION : Enregistrer un don dans Firestore
+// -----------------------------------------------------
 export async function submitDon(data) {
   await addDoc(collection(db, "dons"), {
     ...data,
