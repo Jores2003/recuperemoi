@@ -117,3 +117,56 @@ input, select, textarea {
 .btn-submit:hover {
   background: #43a047;
 }
+<script type="module">
+  import { auth, uploadPhoto, submitDon, setupCategorySelector } from "./firebase.js";
+
+  setupCategorySelector();
+
+  const form = document.getElementById("donForm");
+  const preview = document.getElementById("preview");
+
+  // Preview photos
+  photos.addEventListener("change", () => {
+    preview.innerHTML = "";
+    [...photos.files].forEach(file => {
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      preview.appendChild(img);
+    });
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const user = auth.currentUser;
+    if (!user) {
+      alert("Vous devez être connecté pour déposer un don.");
+      return;
+    }
+
+    // Upload photos
+    const photoURLs = [];
+    for (const file of photos.files) {
+      const url = await uploadPhoto(file, user.uid);
+      photoURLs.push(url);
+    }
+
+    // Don complet
+    const donData = {
+      userId: user.uid,
+      contact: user.email,
+      category: category.value,
+      subcategory: subcategory.value,
+      state: state.value,
+      city: city.value,
+      description: description.value,
+      photos: photoURLs
+    };
+
+    await submitDon(donData);
+
+    alert("Don déposé avec succès !");
+    form.reset();
+    preview.innerHTML = "";
+  });
+</script>
